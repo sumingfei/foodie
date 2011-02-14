@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="<?php echo SITE_URL ?>/_resources/css/style.css">
+        <!--[if IE 6]>
+        <link rel="stylesheet" href="<?php echo SITE_URL ?>/_resources/css/style_ie6.css">
+        <![endif]-->
+
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    </head>    
+    <body>
+        <div id="wrap">        
+            <!-- content start -->
+            <img id="logo" src="<?php echo SITE_URL; ?>/_resources/img/logo.png"/>
+            <div id="content">
+                <div id="sidebar">
+                    <?php include_once("sidebar.view") ?>
+                </div>
+                <div id="main">        

@@ -1,0 +1,58 @@
+<?php 
+/* 
+-------------------------------------------------------------------------
+project: Sharp User Management System
+author : Denon Studio (denonstudio.net)
+url    : http://codecanyon.net/denonstudio
+license: http://codecanyon.net/wiki/support/legal-terms/licensing-terms/
+-------------------------------------------------------------------------
+*/
+
+
+class Memberships extends TAbstractModel {
+
+    public function add($userid, $roleid) 
+    {
+        $sql = "INSERT INTO memberships VALUES ($userid, $roleid)";
+        $this->db->query($sql);
+    }
+
+    public function remove($userid, $roleid) 
+    {
+        $sql = "DELETE FROM memberships WHERE userid = $userid AND roleid = $roleid";
+        $this->db->query($sql);
+    }
+    
+    public function willDuplicate($userid, $roleid) 
+    {
+        $sql       = "SELECT * FROM memberships WHERE userid = $userid AND roleid = $roleid";
+        $resultSet = $this->db->query($sql);
+
+        return ($resultSet && mysql_num_rows($resultSet) > 0);
+    }
+    
+    public function removeRoleMembers($roleid)
+    {
+        $sql = "DELETE FROM memberships WHERE roleid = $roleid";
+        $this->db->query($sql);
+    }
+
+    public function getRoleMembersCount($roleid)
+    {
+        $sql       = "SELECT COUNT(roleid) rolecount FROM memberships WHERE roleid = $roleid";
+        $resultSet = $this->db->query($sql);
+
+        if ($resultSet && $row = mysql_fetch_assoc($resultSet))
+            return $row["rolecount"];
+        
+        return 0;
+    }
+    
+    public function removeMemberRoles($memberid)
+    {
+        $sql = "DELETE FROM memberships WHERE userid = $memberid";
+        $this->db->query($sql);
+    }
+}
+
+?>

@@ -1,0 +1,292 @@
+/* colors 
+#666666 (dark grey) - main text color
+#85d890 (green) - background and links
+#54b4c8 (sky blue) - headings color
+#eaed48 (yellow) - hover link and button background
+#dd0000 (dark red) - italics
+#000000 (black) - bold
+-----------------------*/
+
+/* containers
+-----------------------*/
+body {
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+	font: 12px Arial;
+	color: #666666;
+	background: #85d890 url('../images/bg.jpg') repeat-x top left;
+}
+#page {
+	margin: 0 auto;
+	width: 975px;
+	text-align: justify;
+	background: url('../images/bg2.jpg') repeat-y top left;
+}
+#headerimg {
+	background: url('../images/header2.jpg') no-repeat top left;
+	height: 186px;
+}
+
+#navi {
+	margin: 18px 30px;
+	font-size: 20px;
+	color: #ffffff;
+	}
+#content {
+	padding: 5px 30px 20px 20px;
+} 
+#footer {
+	margin: 0 0 15px 0;
+	padding: 10px 10px 20px 10px;
+	clear: both;
+	text-align: center;
+	background: url('../images/footer.jpg') no-repeat top left;
+}
+/* text changes
+--------------------*/
+strong, b {
+	color: #000000;
+}
+em, i {
+	color: #dd0000;
+}
+/* headings
+--------------------*/
+h1 { /* main headings */
+}
+#foodie {
+	display: block;
+	width: 180px;
+	height: 80px;
+	margin-top: 20px;
+	margin-left: 150px;
+	background: transparent;
+}
+#title { /* main h1 (Foodie, don't display when using image)*/
+	display: none;
+}
+h2 { /* sidebar headings */
+	font-size: 14px;
+	letter-spacing: 1px;
+	color: #54b4c8;
+	padding: 20px 0 0 20px;
+	margin: 0 0 5px 0;
+}
+h3 { /* Content headings */
+	font-size: 20px;
+	letter-spacing: 5px;
+	color: #54b4c8;
+	margin: 20px 0 0 0;
+}
+.first {
+	margin: 0;
+}
+h4 { /* Content subheadings */
+	font-size: 16px;
+	letter-spacing: 3px;
+	border-bottom: 1px solid #666666;
+	margin: 10px 0 5px 0;
+	padding: 0 0 0 20px;
+}
+/* roll over images on front page
+-----------------------------------*/
+/* Removes list-style from lists */
+#button ol, #button ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+/* #3. Button placement */
+div#button{
+	position:relative;
+	margin-top:0px;
+	margin-left:0px;
+}
+
+div#images{
+	width: 910px;
+	height: 305px;
+	overflow:hidden;
+	border:1px #c5c5c5 solid;
+	margin: 10px 0;
+}
+
+/* #3. Navigation buttons to the left of disjointed images */
+div#button li{
+	display:inline;
+}
+
+/* #3. Make the Buttons Clickable */
+li#one a, li#two a, li#three a, li#four a{
+	width:99px;
+	height:64px;
+}
+#images img {
+	padding: 5px;
+	width: 900px;
+}
+.thumbs img {
+	margin: 10px 0 0 10px;
+	border: solid 1px #ccc;
+	padding: 5px;
+}
+.thumbs a:hover {
+	background-color: transparent;
+}
+/* links
+-------------------*/
+a {
+	color: #7bd788;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover {
+	background-color: #eaed48;
+}
+#navi a {
+	color: #ffffff;
+}
+#navi a:hover {
+	color: #eaed48;
+	background-color: transparent;
+	}
+#nutrition , #workout , #body {
+	display: block;
+	width: 150px;
+	height: 50px;
+	padding-left: 50px;
+	padding-top: 15px;
+	}
+#nutrition:hover, #workout:hover, #body:hover {
+	color: #000000;
+}
+#nutrition {
+	color: #de5d33;
+	background: url('../Images/nutrition.jpg') no-repeat top left;
+}
+#workout {
+	color: #b657c1;
+	background: url('../Images/workout.jpg') no-repeat top left;
+}
+#body {
+	color: #85c7ff;
+	background: url('../Images/body.jpg') no-repeat top left;
+}
+/* navi dropdown menu
+------------------*/
+#navbar {
+	margin: 20px 20px;
+	padding: 0;
+	font-size: 18px; }
+#navbar li {
+	list-style: none;
+	float: left; }
+#navbar li a {
+	display: block;
+	padding: 3px 8px;
+	background-color: transparent;
+	color: #fff;
+	text-decoration: none; }
+#navbar li ul {
+	display: none; 
+	width: 10em; /* Width to help Opera out */
+	background-color: #69f;}
+#navbar li:hover ul {
+	display: block;
+	position: absolute;
+	margin: 0;
+	padding: 0; }
+#navbar li:hover li {
+	float: none; }
+#navbar li:hover li a {
+	background-color: transparent;
+	border-bottom: 1px solid #fff;
+	color: #fff; }
+#navbar li li a:hover {
+	background-color: #8db3ff; }
+
+/* forms
+------------------*/
+input, textarea {
+	border: 1px solid #7bd788;
+	background: transparent;
+	margin: 5px;
+}
+input:focus {
+	background: #ffffff;
+}
+#login {
+	padding: 3px 0 0 335px;
+}
+#login label {
+	color: #ffffff;
+	}
+#username , #password {
+	width: 110px;
+	
+}
+#submissions {
+	padding: 10px;
+}
+#submissions a {
+	padding: 5px;
+	background: #7bd788;
+	color: #ffffff;
+	font-weight: bold;
+}
+#submit {
+	background: #7bd788;
+	color: #ffffff;
+	font-weight: bold;
+}
+#submit:focus , #submit:hover, #submissions a:hover{
+	background: #eaed48;
+	color: #7bd788;
+}
+.d1 {
+	background: #7bd788;
+	padding: 10px;
+	margin: 10px 0;
+	color: #000000;
+}
+.d0 {
+	background: #54b4c8;
+	padding: 10px;
+	margin: 10px 0;
+	color: #000000;
+}
+/* fat secret
+-------------------------------*/
+/* the container */
+#fatsecret_container{
+margin: 0 20px;
+border: 0 ;
+}
+
+/* heading in the canvas */
+#fatsecret_container .fatsecret_heading{
+color:#3472AB;
+}
+
+/* all buttons in the canvas */
+#fatsecret_container .fatsecret_button{
+border:1px solid #4592C0;
+background-color:#D8ECF7;
+}
+
+/* item separators */
+#fatsecret_container .fatsecret_borderbottom{
+border-bottom:1px solid #D8ECF7;
+}
+
+.fatsecret_ate_this{
+color:#ff00ff;
+]
+
+/* footer */
+.fatsecret_footer{
+text-align:center;
+padding:5px 0;
+}

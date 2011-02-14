@@ -1,0 +1,188 @@
+/*Standard settings to normalize document from the start */
+
+/* Normalizes margin, padding */
+
+
+/* Removes list-style from lists */
+#button ol, #button ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+/* #3. Button placement */
+div#button{
+	position:relative;
+	margin-top:0px;
+	margin-left:0px;
+}
+
+div#images{
+	width:400px;
+	height:300px;
+	overflow:hidden;
+	border:1px #c5c5c5 solid;
+}
+
+/* #3. Navigation buttons to the left of disjointed images */
+div#button li{
+	display:inline;
+}
+
+/* #3. Make the Buttons Clickable */
+li#one a, li#two a, li#three a, li#four a{
+	width:99px;
+	height:64px;
+}
+/*stuff added by David Su */
+
+#left{ /*currently contains the fatsecret2 page left */
+	float: left;
+}
+#right{
+	width: 350px;
+	float: right;
+}
+
+/* root element for tabs  */
+ul.css-tabs {  
+	margin:0 !important; 
+	padding:0;
+	height:30px;
+	border-bottom:1px solid #666;	 	
+}
+
+/* single tab */
+ul.css-tabs li {  
+	float:left;	 
+	padding:0; 
+	margin:0;  
+	list-style-type:none;	
+}
+
+/* link inside the tab. uses a background image */
+ul.css-tabs a { 
+	float:left;
+	font-size:13px;
+	display:block;
+	padding:5px 30px;	
+	text-decoration:none;
+	border:1px solid #666;	
+	border-bottom:0px;
+	height:18px;
+	background-color:#efefef;
+	color:#777;
+	margin-right:2px;
+	position:relative;
+	top:1px;	
+	outline:0;
+	-moz-border-radius:4px 4px 0 0;	
+}
+
+ul.css-tabs a:hover {
+	background-color:#F7F7F7;
+	color:#333;
+}
+	
+/* selected tab */
+ul.css-tabs a.current {
+	background-color:#ddd;
+	border-bottom:1px solid #ddd;	
+	color:#000;	
+	cursor:default;
+}
+
+	
+/* tab pane */
+.css-panes div {
+	display:none;
+	border:1px solid #666;
+	border-width:0 1px 1px 1px;
+	min-height:150px;
+	padding:15px 20px;
+	background-color:#ddd;	
+}
+
+
+/*second tab ------------------------------------*/
+/* root element for tabs  */
+
+ul.tabs { 
+	list-style:none; 
+	margin:0 !important; 
+	padding:0;	
+	border-bottom:1px solid #666;	
+	height:30px;
+}
+
+/* single tab */
+ul.tabs li { 
+	float:left;	 
+	text-indent:0;
+	padding:0;
+	margin:0 !important;
+	list-style-image:none !important; 
+}
+
+/* link inside the tab. uses a background image */
+ul.tabs a { 
+	background: url(/tools/img/tabs/blue.png) no-repeat -420px 0;
+	font-size:11px;
+	display:block;
+	height: 30px;  
+	line-height:30px;
+	width: 134px;
+	text-align:center;	
+	text-decoration:none;
+	color:#333;
+	padding:0px;
+	margin:0px;	
+	position:relative;
+	top:1px;
+}
+
+ul.tabs a:active {
+	outline:none;		
+}
+
+/* when mouse enters the tab move the background image */
+ul.tabs a:hover {
+	background-position: -420px -31px;	
+	color:#fff;	
+}
+
+/* active tab uses a class name "current". its highlight is also done by moving the background image. */
+ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
+	background-position: -420px -62px;		
+	cursor:default !important; 
+	color:#000 !important;
+}
+
+/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
+
+
+/* width 1 */
+ul.tabs a.s 			{ background-position: -553px 0; width:81px; }
+ul.tabs a.s:hover 	{ background-position: -553px -31px; }
+ul.tabs a.s.current  { background-position: -553px -62px; }
+
+/* width 2 */
+ul.tabs a.l 			{ background-position: -248px -0px; width:174px; }
+ul.tabs a.l:hover 	{ background-position: -248px -31px; }
+ul.tabs a.l.current  { background-position: -248px -62px; }
+
+
+/* width 3 */
+ul.tabs a.xl 			{ background-position: 0 -0px; width:248px; }
+ul.tabs a.xl:hover 	{ background-position: 0 -31px; }
+ul.tabs a.xl.current { background-position: 0 -62px; }
+
+
+/* initially all panes are hidden */ 
+.panes .pane {
+	display:none;		
+}
+
+
+
+

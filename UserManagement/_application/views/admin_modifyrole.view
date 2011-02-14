@@ -1,0 +1,118 @@
+<?php include_once("header.view"); 
+$error = (isset($data["error"])) ? $data["error"] : null;
+
+if ($error)
+{
+?>
+<div class="section">
+    <h2>Oops! there was a problem.</h2>
+    <ul>
+        <li class="listite,">    
+            <div class="error">
+                <p><?php echo $error; ?></p>
+            </div>
+        </li>
+    <ul>        
+</div>
+<?php 
+}
+else
+{
+    $errors = (isset($data["input_errors"])) ? $data["input_errors"] : null;
+    $notice = (isset($data["notice"      ])) ? $data["notice"     ] : null;
+    $role   = $data["role" ];
+    $input  = $data["input"];
+
+    function wrapErrorWithTag($message) 
+    {
+        return "<p class=\"error\">" . $message . "</p>";
+    }
+    
+    function printError($fieldname, $errors) 
+    {
+        if (isset($errors) && isset($errors[$fieldname])) 
+            echo wrapErrorWithTag("&raquo; " . $errors[$fieldname], "p");
+    }
+    
+    function printInput($fieldname, $input) 
+    {
+        if (isset($input) && isset($input[$fieldname])) 
+           echo $input[$fieldname];
+    }
+    
+    if ($notice)
+    {
+?>
+<div class="section" id="noticesection">
+    <h2>Notice.</h2>
+    <ul>
+        <li>    
+            <div class="notice">
+                <p><?php echo $notice ?></p>
+            </div>
+        </li>
+    <ul>
+</div>
+<script type="text/javascript">
+<!--
+    jQuery(window).ready(function(){
+        jQuery("#noticesection").delay(6000).slideUp(1000);
+    });
+-->
+</script>        
+<?php 
+    }
+?>
+<div class="section">
+    <h2>Role: <?php echo $role["name"]; ?></h2>
+    <form action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post">
+        <ul>
+            <li class="listitem">
+                <div class="row">
+                    <label for="txtname">Title:</label>
+                    <input class="textbox" id="txtname" name="name" type="text" value="<?php printInput("name", $input); ?>" maxlength="255"/>
+                    <?php printError("name", $errors); ?>
+                </div>
+    
+                <div class="row">
+                    <label for="txtdescription">First name:</label>
+                    <input class="textbox" id="txtdescription" name="description" type="text" value="<?php printInput("description", $input); ?>" maxlength="80"/>
+                    <?php printError("description", $errors); ?>
+                </div>
+            </li>    
+            <li class="listitem">
+                <div class="row rightalign">
+                    <input class="form-button" name="action" type="submit" value="Update"/>
+                </div>
+            </li>    
+        </ul>    
+    </form>
+</div>
+<div class="section">
+    <h2>Status</h2>
+    <ul>
+        <li class="listitem">
+            <div class="row definition-list">
+                <span class="term">Members count:</span><span class="def"><?php echo $data["memberscount"]; ?></span>
+            </div>
+        </li>    
+    </ul>    
+</div>
+<div class="section">
+    <h2>Action</h2>
+    <form action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post">
+        <ul>
+            <li class="listitem">
+                <div class="row">
+                    <input class="form-button red" type="submit" name="action" value="Remove"/>
+                    <input class="form-button red" type="submit" name="action" value="Remove members"/>
+                </div>
+            </li>    
+        </ul>    
+    </form>
+</div>
+<?php 
+}
+
+include_once("footer.view"); 
+?>

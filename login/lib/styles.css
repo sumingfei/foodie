@@ -1,0 +1,29 @@
+body p				{font:normal 0.7em auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;color:#567475;line-height:1.1}
+body a 				{font-weight:bold;text-decoration:none;color:#567475;}
+body a:hover 			{text-decoration:underline;}
+label				{line-height:1.7;font-weight:bold}
+.input				{border: 1px solid #99b3b4;width: 220px;background: #e4ebeb url(../images/input_stripe.gif);font: 11px verdana, sans-serif;color:#443;padding:3px;outline:none;}
+.input:focus			{border:1px solid #567475;background: #e4ebeb;}
+.button			{width: 54px;height: 20px;outline: none;vertical-align:bottom;border:0;margin:10px 0 0 0;}
+#log 				{padding:15px;margin:200px auto auto auto;width:230px;height:120px;}
+select				{border: 1px solid #99b3b4;background: #e4ebeb;font:normal 1em auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;color:#443;}
+div.pages			{margin:10px;}
+div.pages div,div.pages a	{margin-right:1px;padding:1px 5px 2px 5px;border:1px solid #99b3b4;text-decoration:none;font-size:12px;color:#99b3b4;}
+div.pages div,div.pages a:hover	{border:1px solid #99b3b4;background-color:#99b3b4;color:#fff;}
+div.pages .current		{border:1px solid #443;background-color:#99b3b4;color:#fff;}
+table 				{border-collapse:collapse;background-color:#fff;color:#4f6b72;border:solid 1px #C1DAD7;}
+table em			{color:#ccc;display:block;}
+table em:hover			{color:#cc3399;}
+td, th 				{border-left:solid 1px #C1DAD7;white-space:nowrap}
+th				{padding-left:10px}
+table a 			{color:#950000;text-decoration:none;border:0;font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;}
+table a:link 			{text-decoration:none;}
+table a:visited 		{font-weight:normal;color:#666;text-decoration: line-through;}
+table a:hover 			{border-bottom: 1px dashed #C1DAD7;}
+thead th, tfoot th, tfoot td 	{font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;color: #4f6b72;border-right: 1px solid #C1DAD7;border-bottom: 1px solid #C1DAD7;border-top: 1px solid #C1DAD7;letter-spacing: 1px;text-transform: uppercase;text-align: left;padding: 6px 6px 6px 12px;background: #CAE8EA url(../images/bg_header.jpg) no-repeat;}
+tfoot td 			{text-align:right}
+tbody th, tbody td 		{border-bottom: solid 1px #C1DAD7;}
+tbody th 			{white-space: nowrap;padding:0 5px;background-color: #DAEFF1;color:#4f6b72;font-size:85%;font-family:Verdana;width:10px}
+tbody th a 			{color:#333;}
+tbody tr:hover 			{background:#EEF8F9;}
+.powered, .powered a		{margin-top:10px;color:#ccc;font-size:10px;text-align:right;font-family:Arial;}

@@ -1,0 +1,102 @@
+<?php 
+$auth       = new TAuthentication();
+$authResult = $auth->validateSession(null);
+
+function isAdmin($authResult)
+{
+    $utils = new TUtilities();
+    foreach($authResult->roles as $role)
+        if ($utils->stringsEqual($role["name"], "admin", false))
+            return true;
+}
+
+if ($authResult->auth_code != AUTH_NO_SESSION)
+{
+?>
+<h2>Hello</h2>
+<div class="navigation">
+    <ul>
+        <li>
+            <p><?php echo $authResult->account["username"]; ?></p>
+        </li>
+    </ul>
+</div>
+<?php
+    if (isAdmin($authResult))
+    {
+?>
+<h2>Administration</h2>
+<div class="navigation">
+    <ul>
+        <li>
+            <a  href="<?php echo SITE_URL ?>/admin/dashboard.php">Dashboard</a>
+        </li>
+        <li>
+            <a  href="<?php echo SITE_URL ?>/admin/memberships.php">Memberships</a>
+        </li>    
+        <li>
+            <a  href="<?php echo SITE_URL ?>/admin/roles.php">Roles</a>
+        </li>    
+        <li>
+            <a  href="<?php echo SITE_URL ?>/admin/sessions.php">Sessions</a>
+        </li>    
+        <li>
+            <a  href="<?php echo SITE_URL ?>/admin/settings.php">Settings</a>
+        </li>    
+    </ul>
+</div>
+<h2>Search</h2>
+<div class="navigation">
+    <ul>
+        <li>
+            <p>Search for users here:</p>
+        </li>
+        <li>
+            <form action="<?php echo SITE_URL . "/admin/search.php"; ?>" method="get" id="searchform">
+                <input type="text" name="q" class="searchbox" maxlength="100" value="<?php echo (isset($data["search"])) ? $data["search"] : ""; ?>"/>
+                <input type="submit" class="searchbutton" value="Search"/>
+            </form>
+        </li>
+    </ul>
+</div>
+<?php 
+    } 
+?>
+<h2>Options</h2>
+<div class="navigation">
+    <ul>
+        <li>
+            <a  href="<?php echo SITE_URL; ?>/user/userprofile.php">Profile</a>
+        </li>
+        <li>
+            <a  href="<?php echo SITE_URL; ?>/user/changepassword.php">Change Password</a>
+        </li>    
+<?php 
+    if ($authResult->auth_code != AUTH_NO_SESSION)
+    {
+?>
+        <li>
+            <a  href="<?php echo SITE_URL . "/signout.php" ?>">Sign out</a>
+        </li>    
+<?php
+    }
+?>
+    </ul>
+</div>
+<?php 
+} 
+?>        
+<h2>Links</h2>
+<div class="navigation">
+    <ul>
+        <li>
+            <a  href="<?php echo SITE_URL; ?>">Home</a>
+        </li>
+        <li>
+            <a  href="#">Terms of use</a>
+        </li>
+        <li>
+            <a  href="#">Privacy statement</a>
+        </li>    
+    </ul>
+</div>

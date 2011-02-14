@@ -1,0 +1,26 @@
+/* the container */
+#fatsecret_container{
+width: 900px;
+}
+
+/* heading in the canvas */
+#fatsecret_container .fatsecret_heading{
+color:#3472AB;
+}
+
+/* all buttons in the canvas */
+#fatsecret_container .fatsecret_button{
+border:1px solid #4592C0;
+background-color:#D8ECF7;
+}
+
+/* item separators */
+#fatsecret_container .fatsecret_borderbottom{
+border-bottom:1px solid #D8ECF7;
+}
+
+/* footer */
+.fatsecret_footer{
+text-align:left;
+padding:5px 0;
+}

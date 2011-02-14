@@ -1,0 +1,12 @@
+<?php include_once("header.view"); ?>
+<div class="section">
+    <h2>Opps! there was a problem.</h2>
+    <ul>
+        <li>
+            <div class="error">
+                <p><?php echo $data["message"]; ?></p>
+            </div>
+        </li>
+    </ul>
+</div>
+<?php include_once("footer.view"); ?>
