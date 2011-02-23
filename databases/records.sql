@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 31, 2011 at 02:53 PM
+-- Generation Time: Feb 19, 2011 at 10:47 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -16,19 +16,277 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bb_forums`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_forums` (
+  `forum_id` int(10) NOT NULL AUTO_INCREMENT,
+  `forum_name` varchar(150) NOT NULL DEFAULT '',
+  `forum_slug` varchar(255) NOT NULL DEFAULT '',
+  `forum_desc` text NOT NULL,
+  `forum_parent` int(10) NOT NULL DEFAULT '0',
+  `forum_order` int(10) NOT NULL DEFAULT '0',
+  `topics` bigint(20) NOT NULL DEFAULT '0',
+  `posts` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`forum_id`),
+  KEY `forum_slug` (`forum_slug`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bb_forums`
+--
+
+INSERT INTO `bb_forums` (`forum_id`, `forum_name`, `forum_slug`, `forum_desc`, `forum_parent`, `forum_order`, `topics`, `posts`) VALUES
+(1, 'General', 'general', '', 0, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_meta`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_meta` (
+  `meta_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `object_type` varchar(16) NOT NULL DEFAULT 'bb_option',
+  `object_id` bigint(20) NOT NULL DEFAULT '0',
+  `meta_key` varchar(255) DEFAULT NULL,
+  `meta_value` longtext,
+  PRIMARY KEY (`meta_id`),
+  KEY `object_type__meta_key` (`object_type`,`meta_key`),
+  KEY `object_type__object_id__meta_key` (`object_type`,`object_id`,`meta_key`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `bb_meta`
+--
+
+INSERT INTO `bb_meta` (`meta_id`, `object_type`, `object_id`, `meta_key`, `meta_value`) VALUES
+(1, 'bb_option', 0, 'bb_db_version', '2078'),
+(2, 'bb_option', 0, 'name', 'Foodie'),
+(3, 'bb_option', 0, 'uri', 'http://localhost/forums/'),
+(4, 'bb_option', 0, 'from_email', 'suefeng2@gmail.com'),
+(5, 'bb_option', 0, '_transient_bp_bbpress_random_seed', '4fc439364fc74f45e2e1160f4cd285e4'),
+(6, 'bb_option', 0, 'description', 'Food and Fitness Awareness'),
+(7, 'bb_topic', 1, 'voices_count', '1'),
+(8, 'bb_option', 0, 'bb_auth_salt', 'Wpu)IZQ5@6z#'),
+(9, 'bb_option', 0, 'bb_logged_in_salt', 'BSSm@%UZkrS4'),
+(10, 'bb_option', 0, 'bb_nonce_salt', 'E%#CCjxwpuI0'),
+(11, 'bb_option', 0, 'bb_active_theme', 'user#foodie'),
+(12, 'bb_option', 0, 'timezone_string', 'America/Chicago'),
+(13, 'bb_option', 0, 'datetime_format', 'F j, Y - h:i A'),
+(14, 'bb_option', 0, 'date_format', 'F j, Y'),
+(15, 'bb_option', 0, 'mod_rewrite', 'slugs'),
+(16, 'bb_option', 0, 'mod_rewrite_writable', '1'),
+(17, 'bb_option', 0, 'avatars_show', '1'),
+(18, 'bb_option', 0, 'avatars_rating', 'g'),
+(19, 'bb_option', 0, 'avatars_default', 'wavatar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_posts`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_posts` (
+  `post_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `forum_id` int(10) NOT NULL DEFAULT '1',
+  `topic_id` bigint(20) NOT NULL DEFAULT '1',
+  `poster_id` int(10) NOT NULL DEFAULT '0',
+  `post_text` text NOT NULL,
+  `post_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `poster_ip` varchar(15) NOT NULL DEFAULT '',
+  `post_status` tinyint(1) NOT NULL DEFAULT '0',
+  `post_position` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`post_id`),
+  KEY `topic_time` (`topic_id`,`post_time`),
+  KEY `poster_time` (`poster_id`,`post_time`),
+  KEY `post_time` (`post_time`),
+  FULLTEXT KEY `post_text` (`post_text`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bb_posts`
+--
+
+INSERT INTO `bb_posts` (`post_id`, `forum_id`, `topic_id`, `poster_id`, `post_text`, `post_time`, `poster_ip`, `post_status`, `post_position`) VALUES
+(1, 1, 1, 1, '<p>First Post!  w00t.\n</p>\n', '2011-02-19 19:31:54', '127.0.0.1', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_terms`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_terms` (
+  `term_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(55) NOT NULL DEFAULT '',
+  `slug` varchar(200) NOT NULL DEFAULT '',
+  `term_group` bigint(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`term_id`),
+  UNIQUE KEY `slug` (`slug`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bb_terms`
+--
+
+INSERT INTO `bb_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
+(1, 'bbPress', 'bbpress', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_term_relationships`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_term_relationships` (
+  `object_id` bigint(20) NOT NULL DEFAULT '0',
+  `term_taxonomy_id` bigint(20) NOT NULL DEFAULT '0',
+  `user_id` bigint(20) NOT NULL DEFAULT '0',
+  `term_order` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`object_id`,`term_taxonomy_id`),
+  KEY `term_taxonomy_id` (`term_taxonomy_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bb_term_relationships`
+--
+
+INSERT INTO `bb_term_relationships` (`object_id`, `term_taxonomy_id`, `user_id`, `term_order`) VALUES
+(1, 1, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_term_taxonomy`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_term_taxonomy` (
+  `term_taxonomy_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `term_id` bigint(20) NOT NULL DEFAULT '0',
+  `taxonomy` varchar(32) NOT NULL DEFAULT '',
+  `description` longtext NOT NULL,
+  `parent` bigint(20) NOT NULL DEFAULT '0',
+  `count` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`term_taxonomy_id`),
+  UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
+  KEY `taxonomy` (`taxonomy`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bb_term_taxonomy`
+--
+
+INSERT INTO `bb_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES
+(1, 1, 'bb_topic_tag', '', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_topics`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_topics` (
+  `topic_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `topic_title` varchar(100) NOT NULL DEFAULT '',
+  `topic_slug` varchar(255) NOT NULL DEFAULT '',
+  `topic_poster` bigint(20) NOT NULL DEFAULT '0',
+  `topic_poster_name` varchar(40) NOT NULL DEFAULT 'Anonymous',
+  `topic_last_poster` bigint(20) NOT NULL DEFAULT '0',
+  `topic_last_poster_name` varchar(40) NOT NULL DEFAULT '',
+  `topic_start_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `topic_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `forum_id` int(10) NOT NULL DEFAULT '1',
+  `topic_status` tinyint(1) NOT NULL DEFAULT '0',
+  `topic_open` tinyint(1) NOT NULL DEFAULT '1',
+  `topic_last_post_id` bigint(20) NOT NULL DEFAULT '1',
+  `topic_sticky` tinyint(1) NOT NULL DEFAULT '0',
+  `topic_posts` bigint(20) NOT NULL DEFAULT '0',
+  `tag_count` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`topic_id`),
+  KEY `topic_slug` (`topic_slug`),
+  KEY `forum_time` (`forum_id`,`topic_time`),
+  KEY `user_start_time` (`topic_poster`,`topic_start_time`),
+  KEY `stickies` (`topic_status`,`topic_sticky`,`topic_time`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bb_topics`
+--
+
+INSERT INTO `bb_topics` (`topic_id`, `topic_title`, `topic_slug`, `topic_poster`, `topic_poster_name`, `topic_last_poster`, `topic_last_poster_name`, `topic_start_time`, `topic_time`, `forum_id`, `topic_status`, `topic_open`, `topic_last_post_id`, `topic_sticky`, `topic_posts`, `tag_count`) VALUES
+(1, 'Your first topic', 'your-first-topic', 1, 'admin', 1, 'admin', '2011-02-19 19:31:54', '2011-02-19 19:31:54', 1, 0, 1, 1, 0, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_usermeta`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_usermeta` (
+  `umeta_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL DEFAULT '0',
+  `meta_key` varchar(255) DEFAULT NULL,
+  `meta_value` longtext,
+  PRIMARY KEY (`umeta_id`),
+  KEY `user_id` (`user_id`),
+  KEY `meta_key` (`meta_key`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `bb_usermeta`
+--
+
+INSERT INTO `bb_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES
+(1, 1, 'bb_capabilities', 'a:1:{s:9:"keymaster";b:1;}'),
+(2, 1, 'bb_topics_replied', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bb_users`
+--
+
+CREATE TABLE IF NOT EXISTS `bb_users` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_login` varchar(60) NOT NULL DEFAULT '',
+  `user_pass` varchar(64) NOT NULL DEFAULT '',
+  `user_nicename` varchar(50) NOT NULL DEFAULT '',
+  `user_email` varchar(100) NOT NULL DEFAULT '',
+  `user_url` varchar(100) NOT NULL DEFAULT '',
+  `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_status` int(11) NOT NULL DEFAULT '0',
+  `display_name` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `user_login` (`user_login`),
+  UNIQUE KEY `user_nicename` (`user_nicename`),
+  KEY `user_registered` (`user_registered`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bb_users`
+--
+
+INSERT INTO `bb_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_status`, `display_name`) VALUES
+(1, 'admin', '$P$BqmXw0DGdRcLNUC/lrdWd8D9Qy/5qT.', 'admin', 'suefeng2@gmail.com', '', '2011-02-19 19:31:54', 0, 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `blog_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `blog_comments` (
-`id` int(20) NOT NULL AUTO_INCREMENT,
-`entry` int(20) NOT NULL,
-`name` varchar(255) NOT NULL,
-`email` varchar(255) NOT NULL,
-`url` varchar(255) NOT NULL,
-`comment` longtext NOT NULL,
-`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `entry` int(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `comment` longtext NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `blog_comments`
@@ -57,166 +315,24 @@ INSERT INTO `blog_comments` (`id`, `entry`, `name`, `email`, `url`, `comment`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
---
-
-CREATE TABLE IF NOT EXISTS `comments` (
-`article_id` int(11) NOT NULL DEFAULT '0',
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`page` varchar(255) NOT NULL DEFAULT '',
-`username` varchar(255) NOT NULL DEFAULT 'Guest',
-`subject` varchar(255) NOT NULL DEFAULT '',
-`contact` varchar(255) NOT NULL DEFAULT '',
-`comment` text NOT NULL,
-`ip` varchar(15) NOT NULL DEFAULT '0',
-`date` varchar(255) NOT NULL DEFAULT '',
-`time` varchar(11) NOT NULL DEFAULT '',
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
-
---
--- Dumping data for table `comments`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `memberships`
---
-
-CREATE TABLE IF NOT EXISTS `memberships` (
-`userid` int(11) NOT NULL,
-`roleid` int(11) NOT NULL,
-PRIMARY KEY (`userid`,`roleid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `memberships`
---
-
-INSERT INTO `memberships` (`userid`, `roleid`) VALUES
-(1, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `nutrition_history`
 --
 
 CREATE TABLE IF NOT EXISTS `nutrition_history` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`food_id` int(11) NOT NULL,
-`calorie` int(11) NOT NULL,
-`fat` int(11) NOT NULL,
-`carb` int(11) NOT NULL,
-`protein` int(11) NOT NULL,
-`inserttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `food_id` int(11) NOT NULL,
+  `calorie` int(11) NOT NULL,
+  `fat` int(11) NOT NULL,
+  `carb` int(11) NOT NULL,
+  `protein` int(11) NOT NULL,
+  `inserttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `nutrition_history`
 --
 
-INSERT INTO `nutrition_history` (`id`, `food_id`, `calorie`, `fat`, `carb`, `protein`, `inserttime`) VALUES
-(1, 10000, 32, 24, 55, 67, '2010-10-22 22:13:39'),
-(2, 10001, 54, 43, 33, 6, '2010-10-22 22:13:39'),
-(3, 10002, 88, 48, 93, 67, '2010-10-22 22:13:39');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `restaurant`
---
-
-CREATE TABLE IF NOT EXISTS `restaurant` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`name` varchar(32) NOT NULL,
-`street` varchar(40) NOT NULL,
-`city` varchar(20) NOT NULL,
-`state` varchar(10) NOT NULL,
-`phone` varchar(22) NOT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `restaurant`
---
-
-INSERT INTO `restaurant` (`id`, `name`, `street`, `city`, `state`, `phone`) VALUES
-(1, 'My Rest aurant', '45 W University Ave', 'Urbana', 'Illinois', '(425)342-5987');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
-
-CREATE TABLE IF NOT EXISTS `roles` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`name` varchar(50) NOT NULL,
-`description` char(255) DEFAULT NULL,
-PRIMARY KEY (`id`),
-UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `name`, `description`) VALUES
-(1, 'admin', 'highest user right');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sessions`
---
-
-CREATE TABLE IF NOT EXISTS `sessions` (
-`id` varchar(255) NOT NULL,
-`userid` int(11) NOT NULL,
-`started_on` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`id`, `userid`, `started_on`) VALUES
-('$1$VD4.4I2.$Pjpzfpqyeix7Bn6R0StTf/', 1, '2010-10-30 13:47:01');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `settings`
---
-
-CREATE TABLE IF NOT EXISTS `settings` (
-`name` varchar(40) NOT NULL,
-`value` varchar(255) NOT NULL,
-`description` varchar(255) DEFAULT NULL,
-`category` varchar(40) NOT NULL,
-PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `settings`
---
-
-INSERT INTO `settings` (`name`, `value`, `description`, `category`) VALUES
-('Admin Email', 'arman.mirkazemi@gmail.com', 'The email address of site admin', 'Application Settings'),
-('Application Name', 'Sharp User Management', 'The name of the application', 'Application Settings'),
-('Default Paging Size', '20', 'The default number of records to show per page', 'Application Settings'),
-('Default User Role', '', 'The role that is automatically assigned to users when they register', 'Application Settings'),
-('Expire Session After', '7200', 'Value must be in seconds', 'Application Settings'),
-('Minimum Password Length', '6', 'Specifies the minimum password length for accounts', 'Application Settings'),
-('Require Email Activation', 'yes', 'When set to yes, registration will require users to confirm their email address (yes|no)', 'Application Settings'),
-('SMTP Host', '', 'The url for the SMTP server used to send emails (eg smtp.domainname.com)', 'Email Settings'),
-('SMTP Password', '', 'The password for the SMTP account used for sending emails', 'Email Settings'),
-('SMTP Port', '', 'The port number of the SMTP server used for sending emails', 'Email Settings'),
-('SMTP Username', '', 'The username for SMTP account used for sending emails', 'Email Settings');
 
 -- --------------------------------------------------------
 
@@ -225,24 +341,21 @@ INSERT INTO `settings` (`name`, `value`, `description`, `category`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `uiucdorm` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`name` varchar(32) NOT NULL,
-`calorie` int(11) NOT NULL,
-`fat` int(11) NOT NULL,
-`carb` int(11) NOT NULL,
-`protein` int(11) NOT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `calorie` int(11) NOT NULL,
+  `fat` int(11) NOT NULL,
+  `carb` int(11) NOT NULL,
+  `protein` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `uiucdorm`
 --
 
 INSERT INTO `uiucdorm` (`id`, `name`, `calorie`, `fat`, `carb`, `protein`) VALUES
-(1, 'bbbbbb', 23, 32, 98, 42),
-(2, 'aaaaaaaa', 949, 9499, 8773, 41328),
-(3, 'aaaa', 32, 24, 55, 67),
-(4, 'fwhat', 41324, 34214, 365536, 4325);
+(1, 'aaaa', 32, 24, 55, 67);
 
 -- --------------------------------------------------------
 
@@ -251,23 +364,22 @@ INSERT INTO `uiucdorm` (`id`, `name`, `calorie`, `fat`, `carb`, `protein`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`username` varchar(80) NOT NULL,
-`password` varchar(255) NOT NULL,
-`firstname` varchar(80) NOT NULL,
-`lastname` varchar(80) NOT NULL,
-`email` varchar(255) NOT NULL,
-`confirmed_email` int(1) DEFAULT '0',
-`registered_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-`disabled` int(1) NOT NULL DEFAULT '1',
-`admin_disabled` int(1) NOT NULL DEFAULT '0',
-PRIMARY KEY (`id`),
-UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `temp_pass` varchar(32) DEFAULT NULL,
+  `temp_pass_active` tinyint(1) NOT NULL DEFAULT '0',
+  `email` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `level_access` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Username` (`username`),
+  UNIQUE KEY `Email` (`email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `email`, `confirmed_email`, `registered_on`, `disabled`, `admin_disabled`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Mingfei', 'Su', 'sumingfei@gmail.com', 0, '2010-02-05 01:49:59', 0, 0);
+INSERT INTO `users` (`id`, `username`, `password`, `temp_pass`, `temp_pass_active`, `email`, `active`, `level_access`) VALUES
+(1, 'admin', 'admin', NULL, 0, '', 1, 1);

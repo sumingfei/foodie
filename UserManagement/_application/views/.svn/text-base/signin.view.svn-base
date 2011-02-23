@@ -1,0 +1,45 @@
+<?php 
+include("header.view");
+
+$error = (isset($data["error"])) ? $data["error"] : null;
+if ($error) {
+?>
+<div class="section">
+    <h2>Notice</h2>    
+    <ul>
+        <li>
+            <div class="error">
+                <p><?php echo $error; ?></p>
+            </div>
+        </li>
+    </ul>
+</div>
+<?php 
+}
+?>
+<div class="section">
+    <h2>Sign in</h2>    
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+        <ul>
+            <li class="listitem">
+                <div class="row">
+                    <label>Username:</label>
+                    <input class="textbox" type="text" name="username" value="" maxlength="80"/>
+                </div>
+                <div class="row">
+                    <label>Password:</label>
+                    <input class="textbox" type="password" name="password" value="" maxlength="80"/>
+                </div>
+            </li>
+            <li class="listitem">
+                <div class="row">
+                    <input class="form-button" type="submit" name="signin" value="Signin"/>
+                    <a class="loginoptions indentmore" href="signup.php">Signup</a>
+                    <a class="loginoptions" href="resetpassword.php">Forgot your password?</a>
+                </div>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<?php include("footer.view") ?>

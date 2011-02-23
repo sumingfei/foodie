@@ -1,0 +1,63 @@
+<?php include_once("header.view"); ?>
+<div class="section">
+    <h2>Actions</h2>
+    <ul>
+        <li class="listitem">
+            <div class="row">
+                <form>
+                    <input type="button" class="form-button" value="New" id="newrole"/>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Roles</h2>
+    <form>
+        <ul>
+<?php
+$roles = $data["roles"];
+
+if ($roles) {
+    foreach($roles as $role) {
+        $utils = new TUtilities();
+?>
+        <li class="listitem">
+            <div class="row">
+                <h3>
+                    <a class="role" href="<?php echo SITE_URL . "/admin/modifyrole.php?roleid=" . $role["id"]; ?>"><?php echo $role["name"]; ?></a>
+                </h3>
+            </div>
+            <div class="row definition-list">
+                <span class="term">Id:</span><span class="def"><?php echo $role["id"]; ?></span>
+                <span class="term">Members enrolled in:</span><span class="def"><?php echo $role["count"]; ?></span>
+                <span class="term">Description:</span><span class="def"><?php echo $role["description"]; ?></span>
+            </div>
+        </li>
+<?php 
+    }
+}
+?>
+        </ul>
+</div>
+<script type="text/javascript">
+<!--
+    jQuery("#newrole").click(function(){
+        document.location.href = "<?php echo SITE_URL . "/admin/addrole.php"; ?>";
+    });
+
+    jQuery("#selectall").click(function(){
+        var button = jQuery(this);
+        if (button.attr("value") == "Select all") {
+            jQuery('.listitem input[type=checkbox]').attr("checked", "checked");
+            button.attr("value", "Deselect all");
+        } else {
+            jQuery('.listitem input[type=checkbox]').attr("checked", "");
+            button.attr("value", "Select all");
+        }
+    });
+-->
+</script>
+
+<?php include_once("footer.view"); ?>

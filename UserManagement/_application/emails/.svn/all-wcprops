@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/emails
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/emails/index.html
+END
+PasswordReset.email
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/emails/PasswordReset.email
+END
+SignupEmailConfirmation.email
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/emails/SignupEmailConfirmation.email
+END

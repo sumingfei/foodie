@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views
+END
+user_changepassword.view
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/user_changepassword.view
+END
+admin_settings.view
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_settings.view
+END
+user_confirmaccount.view
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/user_confirmaccount.view
+END
+sidebar.view
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/sidebar.view
+END
+admin_search.view
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_search.view
+END
+admin_sessions.view
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_sessions.view
+END
+admin_modifyrole.view
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_modifyrole.view
+END
+admin_addrole.view
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_addrole.view
+END
+confimemail.view
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/confimemail.view
+END
+admin_memberships.view
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_memberships.view
+END
+signin.view
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/signin.view
+END
+header.view
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/header.view
+END
+error.view
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/error.view
+END
+admin_roles.view
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_roles.view
+END
+footer.view
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/footer.view
+END
+admin_modifyuser.view
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_modifyuser.view
+END
+user_profile.view
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/user_profile.view
+END
+admin_dashboard.view
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/admin_dashboard.view
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/index.html
+END
+resetpassword.view
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/resetpassword.view
+END
+signup.view
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/views/signup.view
+END

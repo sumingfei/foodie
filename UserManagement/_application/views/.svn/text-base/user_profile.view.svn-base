@@ -1,0 +1,102 @@
+<?php 
+
+include_once("header.view"); 
+
+$errors  = (isset($data["input_error"])) ? $data["input_error"] : null;
+$account = (isset($data["account"    ])) ? $data["account"    ] : null;
+$input   = (isset($data["input"      ])) ? $data["input"      ] : null;
+$notice  = (isset($data["notice"     ])) ? $data["notice"     ] : null;
+
+function wrapErrorWithTag($message) 
+{
+    return "<p class=\"error\">" . $message . "</p>";
+}
+
+function printError($fieldname, $errors) 
+{
+    if (isset($errors) && isset($errors[$fieldname])) 
+        echo wrapErrorWithTag("&raquo; " . $errors[$fieldname], "p");
+}
+
+function printInput($fieldname, $input) 
+{
+    if (isset($input) && isset($input[$fieldname])) 
+        echo $input[$fieldname];
+}
+
+if ($notice)
+{
+?>
+<div class="section" id="noticesection">
+    <h2>Notice.</h2>
+    <ul>
+        <li>    
+            <div class="notice">
+                <p><?php echo $notice ?></p>
+            </div>
+        </li>
+    <ul>
+</div>
+<script type="text/javascript">
+<!--
+    jQuery(window).ready(function(){
+        jQuery("#noticesection").delay(6000).slideUp(1000);
+    });
+-->
+</script>        
+<?php 
+}
+?>
+<div class="section">
+    <h2><?php echo $account["username"]; ?>'s account</h2>
+    <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post"> 
+        <ul>
+            <li class="listitem">
+                <div class="row">
+                    <label for="txtemail">Email address:</label>
+                    <input class="textbox" id="txtemail" name="email" type="text" value="<?php printInput("email", $input); ?>" maxlength="255"/>
+                    <?php printError("email", $errors); ?>
+                </div>
+    
+                <div class="row">
+                    <label for="txtfirstname">First name:</label>
+                    <input class="textbox" id="txtfirstname" name="firstname" type="text" value="<?php printInput("firstname", $input); ?>" maxlength="80"/>
+                    <?php printError("firstname", $errors); ?>
+                </div>
+    
+                <div class="row">
+                    <label for="txtlastname">Last name:</label>
+                    <input class="textbox" id="txtlastname" name="lastname" type="text" value="<?php printInput("lastname", $input); ?>" maxlength="80"/>
+                    <?php printError("lastname", $errors); ?>
+                </div>
+            </li>    
+            <li class="listitem">
+                <div class="row rightalign">
+                    <input class="form-button" name="update" type="submit" value="Update"/>
+                </div>
+            </li>    
+        </ul>   
+    </form>
+</div>
+<div class="section">
+    <h2>About</h2>
+    <ul>
+        <li class="listitem">
+            <div class="row definition-list">
+                <span class="term">Username:</span>
+                <span class="def"><?php echo $account["username"]; ?></span>
+            </div>
+        </li>
+        <li class="listitem">
+            <div class="row definition-list">
+                <span class="term">Registered on:</span>
+                <span class="def"><?php echo $account["registered_on"]; ?></span>
+                <span class="term">Confirmed email:</span>
+                <span class="def"><?php echo ($account["confirmed_email"] == 1) ? "Yes" : "No"; ?></span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<?php include_once("footer.view"); ?>

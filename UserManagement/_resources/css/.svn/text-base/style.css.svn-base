@@ -1,0 +1,367 @@
+html, body, div, span, applet, object, iframe, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, 
+abbr, acronym, address, big, cite, code, del, 
+dfn, em, font, img, ins, kbd, q, s, samp, small, 
+strike, strong, sub, sup, tt, var, dl, dt, dd, 
+ol, ul, li, fieldset, form, label, legend, table, 
+caption, tbody, tfoot, thead, tr, th, td { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    outline: 0; 
+    font-weight: inherit; 
+    font-style: inherit; 
+    font-size: 100%; 
+    font-family: inherit; 
+    vertical-align: baseline; 
+}
+
+body {
+    background: #fff url(../img/separator_bg.jpg) repeat-y 3px 0px;
+}
+
+h1, h2, h3, h4, li, input, span, label, dl, dt, dd, a {
+    font-family: 'lucida grande','Lucida Sans Unicode',Tahoma,sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+#wrap {
+    width: 900px;
+    bottom: 0px;
+    overflow: hidden;
+}
+
+#content {
+    overflow: auto;
+    font-size: 9pt;
+    color: #111;
+    height: 100%;
+}
+
+#content #sidebar {
+    float: left;
+    width: 190px;
+    padding: 20px 20px;
+}
+
+#sidebar .navigation {
+    background: url(../img/nav_bg.gif);
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#sidebar .navigation ul li {
+    margin-top: 2px;
+    padding-bottom: 3px;
+}
+
+#sidebar .navigation ul a:hover, .row .loginoptions:hover {
+    color: #7A6F3A;
+}
+
+#sidebar .navigation a, #sidebar .navigation p, .paginations .paging {
+    color: #000;
+    font-size: 9pt;
+}
+
+#logo
+{
+    position: fixed;
+    bottom: 20px;
+    left: 0px;
+    z-index: -1;
+}
+
+.paginations .paging {
+    padding: 4px 8px;
+    margin-left: 4px;
+    background: #000;
+    float: right;
+    cursor: pointer;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.paginations .info {
+    color: #fff;
+    background: #aaa;    
+    cursor: default;
+}
+
+.paginations .current {
+    background: #6ED8F8;
+    cursor: default;
+}
+
+.paginations #pagesize {
+    float: left;
+    border: 1px solid #CCC;
+    padding: 3px 7px;
+}
+
+.paginations a {
+    color: #FFF;    
+    text-shadow: none;
+}
+
+#content #main {
+    margin-left: 235px;
+    padding: 20px 20px 20px 20px;
+}
+
+.login-box, signup-box {
+    width: 500px;
+    background: #fff;
+    padding: 15px;
+    margin: 0px auto;
+    overflow: hidden;
+}
+
+.section h2, .section h3, #sidebar h2 {
+    border-bottom: 1px solid #666;
+    font-size: 14pt;
+    font-family: arial;
+    font-weight: bold;
+    color: #111; 
+    padding-bottom: 3px;
+}
+
+.section {
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.smallsection {
+    width: 420px;
+}
+
+.listitem {
+    padding: 3px 8px;
+    background: #F2F2F2;
+    border-top: 1px solid #fff;
+    border-bottom: 1px dotted #ccc;
+    display: block;
+    overflow: hidden;
+}
+
+.section .options {
+    width: 80px;
+    float: right;
+}
+
+.section .listitem .row
+{
+    display: block;
+    overflow: hidden;
+    padding: 3px 0px;
+    overflow: hidden;
+    line-height: 1.4em;
+}
+
+.row h4
+{
+    font-family: arial;
+    font-size: 10pt;
+    color: #88B526;
+}
+
+.field-description {
+    margin: 5px 0px;
+    color: #888;
+}
+
+.section .listitem .button-container {
+    padding: 0px 0px;
+}
+
+form .textbox, .searchbox
+{
+    padding: 4px;
+    font-size: 10pt;
+    font-family: Arial;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.searchbox {
+    width: 99px;
+}
+
+form .form-button, .searchbutton {
+    border: none;
+    background: #88B526 url(../img/overlay-button.png) repeat-x;
+    color: #fff;
+    padding: 4px 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+form .form-button:hover, .paging:hover, .searchbutton:hover {
+    background-color: #999;
+}
+
+.paginations .info:hover {
+    background-color: #aaa;
+}
+
+form .green, .paging:hover{
+    background-color: #88B526;
+}
+
+.paginations .current:hover {
+    background: #6ED8F8;
+}
+
+form .purple {
+    background-color: #C987BC;
+} 
+
+form .red {
+    background-color: #F55018;
+}
+
+form .red:hover {
+    background-color: #C92D30;
+}
+
+form label {
+    float: left;
+    width: 140px;
+    padding-top: 6px;
+}
+
+form .checkbox {
+    margin: 0px 5px 0px 0px;
+}
+
+form .error {
+    margin-left: 140px;
+    padding: 0px 5px;
+    width: 300px;
+    margin-top: 4px;
+    color: #F55018;
+    background: transparent;
+    font-weight: normal;
+}
+
+.confirm-message {
+    margin: 10px 0px;
+    font-size: 10pt;
+}
+
+.section h3 {
+    border: none;
+    font-size: 12pt;
+    margin: 0px 0px 0px;
+}
+
+.section h3 .user, .section h3 .role {
+    background: #6ED8F8;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-size: 9pt;
+    text-transform: lowercase;
+    color: #fff;
+    padding: 4px 5px;
+}
+
+.section h3 .role {
+    background: #C987BC;
+}
+
+.section h3 a:hover {
+    color: #333;
+}
+
+.definition-list .term
+{
+    font-size: 8pt;
+    color: #999;
+    padding-right: 3px;
+}
+
+.definition-list .def
+{
+    font-size: 8pt;
+    padding-right: 10px;
+    color: #777;
+    font-weight: bold;
+}
+
+/*
+.section dd, .section dt {
+    float: left;
+    font-size: 8pt;
+    color: #999;
+    padding-right: 3px;
+}
+
+.section dd {
+    padding-right: 10px;
+    color: #777;
+    font-weight: bold;
+}
+*/
+
+.remove-roles .entry {
+    float: left;
+    margin-right: 4px;
+    background: #fc0a3f url(../img/rolearrow.png) no-repeat right center;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    text-transform: lowercase;
+    border: none;
+    padding: 1px 0px;
+}
+
+.remove-roles .small, .remove-roles .large {
+    color: #FFF;
+    font-size: 8pt;
+    padding: 4px 20px 4px 4px;
+}
+
+.remove-roles .large {
+    padding: 10px 20px 10px 10px;
+}
+
+.rightalign {
+    text-align: right;
+}
+
+.error, .notice {
+    background: url(../img/overlay-button.png) repeat-x;
+    padding: 20px 5px;
+    background-color: #FA6900;
+    color: #fff;
+    font-weight: bold;
+    font-size: 9pt;
+}
+
+.notice {
+    background-color: #9EB477;
+}
+
+.row .loginoptions
+{
+/*     float: right; */
+    margin-left: 10px;
+    color: #777;
+}
+
+.row .indentmore
+{
+    margin-left: 82px;
+}

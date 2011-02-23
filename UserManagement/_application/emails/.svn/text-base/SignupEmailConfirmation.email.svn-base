@@ -1,0 +1,37 @@
+<?php
+/* 
+-------------------------------------------------------------------------
+project: Sharp User Management System
+author : Denon Studio (denonstudio.net)
+url    : http://codecanyon.net/denonstudio
+license: http://codecanyon.net/wiki/support/legal-terms/licensing-terms/
+-------------------------------------------------------------------------
+*/
+
+class SignupEmailConfirmation extends TAbstractEmailTemplate
+{
+    public $appname;
+    public $link;
+
+    public function get()
+    {
+        $content = $this->getTemplate();      
+        return preg_replace(array('/{NAME OF APP}/', '/{CONFIRMATION LINK}/'), array($this->appname, $this->link), $content);
+    }
+    
+    protected function getTemplate()
+    {
+return <<<END
+Thank you for registering with {NAME OF APP}.
+
+To complete your registration with {NAME OF APP}, please visit the link below and confirm your registration.
+
+{CONFIRMATION LINK}
+
+Thanks again.
+END;
+
+    }
+}
+?>    
+    

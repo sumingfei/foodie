@@ -1,0 +1,106 @@
+<?php
+/* 
+-------------------------------------------------------------------------
+project: Sharp User Management System
+author : Denon Studio (denonstudio.net)
+url    : http://codecanyon.net/denonstudio
+license: http://codecanyon.net/wiki/support/legal-terms/licensing-terms/
+-------------------------------------------------------------------------
+*/
+
+
+class Sessions extends TAbstractModel {
+    
+    protected $sessionlength = null;
+    
+    public function __construct() 
+    {
+        parent::__construct();
+        
+        $model = $this->loadmodel("Settings");
+        $this->sessionlength = $model->valueOf("Expire Session After");
+    }
+
+    public function createNewSession($sessionid, $userid) 
+    {
+
+        $sql = "INSERT INTO sessions VALUES ('$sessionid', $userid, NOW())";
+        $this->db->query($sql);
+
+    }
+    
+    public function getSessionRecord($sessionid) 
+    {
+
+        $sql       = "SELECT s.userid, s.id, s.started_on, (DATE_ADD(s.started_on, INTERVAL $this->sessionlength SECOND) < NOW()) expired from sessions s WHERE s.id = '$sessionid'";
+        $resultSet = $this->db->query($sql);
+        
+        if ($resultSet != null && $row = mysql_fetch_assoc($resultSet)) 
+        {
+            return array(
+                "id"         => $sessionid,
+                "userid"     => $row["userid" ],
+                "expired"    => (int)$row["expired"],
+                "started_on" => date($row["started_on"])
+            );
+        }
+        
+        return null;
+    }
+    
+    public function destroySession($sessionid) {
+    
+        $sql = "DELETE FROM sessions WHERE id = '$sessionid'";        
+        $this->db->query($sql);
+
+    }
+    
+    public function checkSession($sessionid) 
+    {
+        $sessionRecord = $this->getSessionRecord($sessionid);
+        
+        if ($sessionRecord != null) 
+        {
+            return $sessionRecord["expired"] = 1;
+        } 
+        else 
+        {
+            return false;
+        }
+    }
+    
+    public function getActiveSessions($offset = 0, $pagesize = 10) 
+    {
+        $result = array();
+        $sql    = "SELECT userid, s.id, started_on, u.username, DATE_ADD(started_on, INTERVAL " . $this->sessionlength . " SECOND) > NOW() " .
+                  "expired from sessions s LEFT JOIN (SELECT username, id FROM users) u ON (u.id = s.userid) WHERE DATE_ADD(started_on, INTERVAL " . 
+                  $this->sessionlength . " SECOND) > NOW() ORDER BY s.started_on LIMIT $offset, $pagesize";
+               
+        $resultSet = $this->db->query($sql);
+        while ($resultSet != null && $row = mysql_fetch_assoc($resultSet)) 
+        {
+            $result[] = array(
+                "id"         => $row["id"],
+                "userid"     => $row["userid"],
+                "username"   => $row["username"],
+                "expired"    => (int)$row["expired"],
+                "started_on" => date($row["started_on"])
+            );
+        }
+        
+        return $result;
+    }
+
+    public function getActiveSessionsCount() 
+    {
+        $sql       = "SELECT COUNT(userid) sessionscount FROM sessions WHERE DATE_ADD(started_on, INTERVAL " . $this->sessionlength . " SECOND) > NOW()";
+        $resultSet = $this->db->query($sql);
+
+        if ($resultSet != null && $row = mysql_fetch_assoc($resultSet)) 
+            return (int)$row["sessionscount"];
+        
+        return 0;        
+    }
+}
+
+?>

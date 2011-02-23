@@ -1,0 +1,115 @@
+<?php 
+include_once("header.view"); 
+
+if (isset($data["error"])) 
+{ 
+?>
+<div class="section">
+    <h2>Oops! there was a problem.</h2>
+    <ul>
+        <li>    
+            <div class="error">
+                <p><?php echo $data["error"]; ?></p>
+            </div>
+        </li>
+    <ul>        
+</div>    
+<?php 
+}
+else
+{
+    $searchTerm = stripslashes($data["search_term"]);
+?>
+<div class="section">
+    <h2>Search result for: <?php echo $searchTerm; ?></h2>
+    <ul>
+
+<?php 
+    $searchResult = $data["search_result"];
+    
+    if ($searchResult["totalresultscount"] > 0)
+    {
+        $users = $searchResult["entries"];
+        foreach($users as $user) 
+        {
+            $editurl        = SITE_URL . "/admin/modifyuser.php?userid=" . $user["id"];
+            $title          = $user["username"];
+            $registeredon   = $user["registered_on"];
+            $id             = $user["id"];
+            $confirmedemail = ($user["confirmed_email"]) ? "Yes" : "No";
+            $disabled       = ($user["disabled"]) ? "Yes" : "No";
+?>
+                <li class="listitem">
+                    <div class="row">
+                        <h3>
+                            <a  class="user" href="<?php echo $editurl; ?>">&raquo; <?php echo $title; ?></a>
+                        </h3>
+                    </div>
+                    <div class="row definition-list">
+                        <span class="term">Id:</span>
+                        <span class="def"><?php echo $id; ?></span>
+                        <span class="term">Registered on:</span>
+                        <span class="def"><?php echo $registeredon; ?></span>    
+                        <span class="term">Confirmed email:</span>
+                        <span class="def"><?php echo $confirmedemail; ?></span>
+                        <span class="term">Account is disabled:</span>
+                        <span class="def"><?php echo $disabled; ?></span>    
+                    </div>
+                </li>
+<?php 
+        }
+    }    
+
+    $paging      = $data  ["paging"      ];
+    $currentPage = $paging["current"     ];
+    $pagesize    = $paging["pagesize"    ];
+    $total       = $paging["totalrecords"];
+    $previous    = $paging["previous"    ];
+    $next        = $paging["next"        ];
+?>    
+    <ul>        
+</div>    
+    <div class="section paginations">
+        <ul>
+        <li class="paging info">
+            <span><?php echo $total; ?> result(s)</span>
+        </li>
+<?php   
+if ($total > $pagesize)
+{
+    if ($currentPage != $next) 
+    {
+?>
+        <li class="paging">
+            <a href="<?php echo $_SERVER["PHP_SELF"] . "?q=$searchTerm&pagesize=$pagesize&page=$next"; ?>">Next</a>
+        </li>
+<?php
+    }
+    
+    $pages = $paging["pages"];
+    for($i = count($pages) - 1; $i >= 0; $i--) 
+    {
+        $pageNumber = $pages[$i];
+?>
+        <li class="paging<?php echo ($pageNumber == $currentPage) ? " current" : "" ?>">
+            <a href="<?php echo $_SERVER["PHP_SELF"] . "?q=$searchTerm&pagesize=$pagesize&page=$pageNumber" ?>"><?php echo $pageNumber ?></a>
+        </li>
+<?php
+    }
+    
+    if ($currentPage != $previous)
+    { 
+?>
+        <li class="paging">
+            <a href="<?php echo $_SERVER["PHP_SELF"] ."?q=$searchTerm&pagesize=$pagesize&page=$previous"; ?>">Previous</a>
+        </li>
+<?php
+    }
+} 
+?>
+    </ul>
+</div>
+<?php
+}
+include_once("footer.view"); 
+?>

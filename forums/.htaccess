@@ -1,0 +1,41 @@
+
+# BEGIN bbPress
+
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /forums/
+
+RewriteRule ^page/([0-9]+)/?$ /forums/index.php?page=$1 [L,QSA]
+RewriteRule ^forum/([^/]+)/page/([0-9]+)/?$ /forums/forum.php?id=$1&page=$2 [L,QSA]
+RewriteRule ^forum/([^/]+)/?$ /forums/forum.php?id=$1 [L,QSA]
+RewriteRule ^forum/?$ /forums/ [R=302,L,QSA]
+RewriteRule ^topic/([^/]+)/page/([0-9]+)/?$ /forums/topic.php?id=$1&page=$2 [L,QSA]
+RewriteRule ^topic/([^/]+)/?$ /forums/topic.php?id=$1 [L,QSA]
+RewriteRule ^topic/?$ /forums/ [R=302,L,QSA]
+RewriteRule ^tags/([^/]+)/page/([0-9]+)/?$ /forums/tags.php?tag=$1&page=$2 [L,QSA]
+RewriteRule ^tags/([^/]+)/?$ /forums/tags.php?tag=$1 [L,QSA]
+RewriteRule ^tags/?$ /forums/tags.php [L,QSA]
+RewriteRule ^profile/([^/]+)/page/([0-9]+)/?$ /forums/profile.php?id=$1&page=$2 [L,QSA]
+RewriteRule ^profile/([^/]+)/([^/]+)/?$ /forums/profile.php?id=$1&tab=$2 [L,QSA]
+RewriteRule ^profile/([^/]+)/([^/]+)/page/([0-9]+)/?$ /forums/profile.php?id=$1&tab=$2&page=$3 [L,QSA]
+RewriteRule ^profile/([^/]+)/?$ /forums/profile.php?id=$1 [L,QSA]
+RewriteRule ^profile/?$ /forums/profile.php [L,QSA]
+RewriteRule ^view/([^/]+)/page/([0-9]+)/?$ /forums/view.php?view=$1&page=$2 [L,QSA]
+RewriteRule ^view/([^/]+)/?$ /forums/view.php?view=$1 [L,QSA]
+RewriteRule ^rss/?$ /forums/rss.php [L,QSA]
+RewriteRule ^rss/topics/?$ /forums/rss.php?topics=1 [L,QSA]
+RewriteRule ^rss/forum/([^/]+)/?$ /forums/rss.php?forum=$1 [L,QSA]
+RewriteRule ^rss/forum/([^/]+)/topics/?$ /forums/rss.php?forum=$1&topics=1 [L,QSA]
+RewriteRule ^rss/topic/([^/]+)/?$ /forums/rss.php?topic=$1 [L,QSA]
+RewriteRule ^rss/tags/([^/]+)/?$ /forums/rss.php?tag=$1 [L,QSA]
+RewriteRule ^rss/tags/([^/]+)/topics/?$ /forums/rss.php?tag=$1&topics=1 [L,QSA]
+RewriteRule ^rss/profile/([^/]+)/?$ /forums/rss.php?profile=$1 [L,QSA]
+RewriteRule ^rss/view/([^/]+)/?$ /forums/rss.php?view=$1 [L,QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /forums/index.php [L]
+</IfModule>
+
+# END bbPress

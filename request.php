@@ -5,6 +5,10 @@ $API = new FatSecretAPI(API_KEY, API_SECRET);
 
 $search_term = $_GET['search_term'];
 
+function parseMeasurement($text){
+	
+}
+
 //echo printResults($search_term, $API);
 $result = new simpleXMLElement($API->searchFoods($search_term));
 	$foods = $result->food;
@@ -20,11 +24,11 @@ print '<table id="result_table" class="fatsecret_foodsearch_results" cellpadding
 foreach ($foods as $food){
 		print '<div id="entry"><tr><td class="fatsecret_borderbottom" colspan="2">';
 		print '<div style="display:inline"><a class="fatsecret_foodsearch_result_link" href="#" onclick=
-		"javascript:displayNutPanel('.$food->food_id.', '.$i.');">';
+		"javascript:displayNut()">';
 		print '<span class="drag" id="'.$i.'">'.$food->food_name.'</span></a></div>
 		<div style="display:inline" class="change_serving"><a id="change_serving'.$i.'" href="javascript:changeServing('.$food->food_id.', '.$i.');" style="color:red;">change serving</a></div>
 		<div id="serving_box" class="serving_box"></div>
-		<div id="food_id" style="display: none;">'.$food->food_id.'</div>
+		<div id="food_id" style="display:none;">'.$food->food_id.'</div>
 		<div id="food_description'.$i.'" style="display: block" class="food_description">'. $food->food_description .'</div></td></tr></div>';
 		$i++;
 	}

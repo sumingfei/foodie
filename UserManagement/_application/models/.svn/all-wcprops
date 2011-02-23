@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/models
+END
+Settings.model
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/models/Settings.model
+END
+Users.model
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/models/Users.model
+END
+Roles.model
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/models/Roles.model
+END
+Sessions.model
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/models/Sessions.model
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/models/index.html
+END
+Memberships.model
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/models/Memberships.model
+END

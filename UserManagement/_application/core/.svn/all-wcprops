@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core
+END
+TAbstractController.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TAbstractController.php
+END
+TAbstractEmailTemplate.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TAbstractEmailTemplate.php
+END
+TPagination.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TPagination.php
+END
+TUtilities.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TUtilities.php
+END
+TAuthentication.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TAuthentication.php
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/index.html
+END
+TExceptions.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TExceptions.php
+END
+Email.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/Email.php
+END
+TAbstractModel.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TAbstractModel.php
+END
+TDatabase.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/foodieuiuc_foodieuiuc/!svn/ver/10/Foodie/UserManagement/_application/core/TDatabase.php
+END
