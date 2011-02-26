@@ -1,0 +1,115 @@
+<?php
+include_once("header.view");
+
+$settings = (isset($data["input"])) ? $data["input"] : null;
+
+if (!$settings)
+{
+?>
+
+
+
+<?php
+}
+else
+{
+    $errors = (isset($data["input_errors"])) ? $data["input_errors"] : null;
+    
+    
+    function wrapErrorWithTag($message) 
+    {
+        return "<p class=\"error\">" . $message . "</p>";
+    }
+    
+    function printError($fieldname, $errors) 
+    {
+        if (isset($errors) && isset($errors[$fieldname])) 
+            echo wrapErrorWithTag("&raquo; " . $errors[$fieldname], "p");
+    }
+    
+    function printInput($fieldname, $input) 
+    {
+        if (isset($input) && isset($input[$fieldname])) 
+            echo $input[$fieldname];
+    }
+
+    $notice = (isset($data["notice"])) ? $data["notice"] : null;
+
+    if ($notice)
+    {
+?>
+<div class="section" id="noticesection">
+    <h2>Notice.</h2>
+    <ul>
+        <li>    
+            <div class="notice">
+                <p><?php echo $notice; ?></p>
+            </div>
+        </li>
+    <ul>
+</div>
+<script type="text/javascript">
+<!--
+    jQuery(window).ready(function(){
+        jQuery("#noticesection").delay(6000).slideUp(1000);
+    });
+-->
+</script>        
+<?php 
+    }
+?>
+<div class="section">
+    <h2>Settings</h2>
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+        <ul>    
+<?php 
+    $category = "";
+    $utils    = new TUtilities();
+    $isFirst  = true;
+     
+    for ($i = 0; $i < count($settings); $i++)
+    {
+        $setting = $settings[$i];
+
+        $name  = $setting["name"       ];
+        $value = $setting["value"      ];
+        $desc  = $setting["description"];
+        
+        if ($utils->stringsEqual($category, $setting["category"]) == false)
+        {
+            $category = $setting["category"];
+?>
+            <li class="listitem">
+                <div class="row">
+                    <h4><?php echo $setting["category"]; ?></h4>
+                </div>
+            </li>
+<?php
+        }
+?>    
+            <li class="listitem">
+                <div class="row">
+                    <label><?php echo $name; ?></label>
+                    <input maxlength="255" type="text" class="textbox" value="<?php echo $value; ?>" name="<?php echo $name; ?>" />
+                    <?php printError($name, $errors); ?>
+                </div>
+                <div class="row">
+                    <p class="field-description"><?php echo $desc; ?></p>
+                </div>
+            </li>
+<?php
+        
+    }
+}
+?>
+            <li class="listitem">
+                <div class="row rightalign">
+                    <input type="submit" class="form-button" value="Update" name="update" />
+                </div>
+            </li>    
+        </ul>    
+    </form>
+</div>
+
+<?php 
+include_once("footer.view"); ?>

@@ -2,27 +2,14 @@
 include('header.php');
 ?>
 <div id="content">
-	<style>
-	.scroll-pane { overflow: auto; width: 70%; float:left; }
-	.scroll-content { width: 1700px; float: left; }
-	.scroll-content-item { width: 100px; height: 100px; float: left; margin: 5px; font-size: 1em; line-height: 0px; }
-	* html .scroll-content-item { display: inline; } /* IE6 float double margin bug */
-	.scroll-bar-wrap { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
-	.scroll-bar-wrap .ui-slider { background: none; border:0; height: 2em; margin: 0 auto;  }
-	.scroll-bar-wrap .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }
-	.scroll-bar-wrap .ui-slider-handle { top:.2em; height: 1.5em; }
-	.scroll-bar-wrap .ui-slider-handle .ui-icon { margin: -8px auto 0; position: relative; top: 50%; }
-	</style>
 	<script>
 	function changeWeight(date, weight){
-		//$("#here").append('<div>'+date+' '+weight+'</div>');
 		$.ajax({
 				type	: "GET",
 				url		: "saveWeight.php",
 				data	: {"date": date, "weight": weight},
 				success : function(response)
 				{
-					$("#here").append('<div>'+date+' '+weight+'</div>');
 				}
 		});
 	}
@@ -30,12 +17,16 @@ include('header.php');
 		$date = $("#datepicker").val();
 		$weight = $("#weightpicker").val();
 		console.debug($date);
+		
+		//$("#dd"+$date).val($weight);
+		console.debug($(this).val());
 		changeWeight($date, $weight);
+		
 	}
 	$(function() {
 		$( "#datepicker" ).datepicker({
 			showOn: "both",
-			buttonImage: "images/calendar.gif",
+			buttonImage: "Images/calendar.gif",
 			buttonImageOnly: true
 		});
 		$(".button").click(function() {  
@@ -110,20 +101,52 @@ include('header.php');
 			reflowContent();
 		});
 		//init scrollbar size
+		
+		/*
+		$.ajax({
+				type	: "GET",
+				url		: "saveWeight.php",
+				dataType: "json",
+				data	: {"what": 1},
+				success : function(response)
+				{
+					
+				}
+		});
+		*/
 		setTimeout( sizeScrollbar, 10 );//safari wants a timeout
 	});
 	</script>
 
-<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+<div class="scroll-pane ui-widget ui-widget-header ui-corner-all" id="weightlog">
 	<div class="scroll-content">
 		<?php
-		for($i = 14; $i >= 0; $i--){
-		$newdate = strtotime(-$i."day", time());
-		$date2 = date("m/d/Y", $newdate);
-		print '<div class="scroll-content-item ui-widget-header"><p style="float: left">'. date("M d", $newdate ).'</p> <input style=" margin-left: 25%; height: 50px; width:50px; font-size: 20px;" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
-		//print '<div class="scroll-content-item ui-widget-header">'. $i.'</div>';
+		//MOD: change this part to a diff file
+		include('connect-db.php');
+		if($stmt = $mysqli->prepare("SELECT date,weight FROM weight_history WHERE timestamp > (SELECT DATE_SUB(now(), INTERVAL 14 day))")){
+			$stmt->execute();
+			$stmt->bind_result($date, $weight);
+			$data;
+			while($stmt->fetch()){
+				$data[$date] = $weight;
+			}
+			//$result = json_encode($data);
+			$stmt->close();
+			//echo $result;
+		}else{
+			echo "ERROR: could not prepare SQL";	
 		}
-		//print '<div>'. (time()/86400).'</div>';
+		$mysqli->close();
+
+		for($i = 14; $i >= 0; $i--){
+			$newdate = strtotime(-$i."day", time());
+			$date2 = date("m/d/Y", $newdate);
+			if(isset($data[$date2])){
+				print '<div class="scroll-content-item ui-widget-header"><p style="float: left">'. date("M d", $newdate ).'</p> <input class="weightbox" id="dd'.$date2.'dd" style=" margin-left: 25%; height: 50px; width:50px; font-size: 20px;" value="'.$data[$date2].'" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
+			}else{
+				print '<div class="scroll-content-item ui-widget-header"><p style="float: left">'. date("M d", $newdate ).'</p> <input class="weightbox" id="dd'.$date2.'dd" style=" margin-left: 25%; height: 50px; width:50px; font-size: 20px;" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
+			}
+		}
 		?>
 	</div>
 	<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
@@ -131,17 +154,16 @@ include('header.php');
 	</div>
 </div>
 
-<div style="height: 606px;" id="sidebar">
-		<form method="get" action="">
+<div style="" id="weight-log-sidebar">
+		<form method="post" action="">
 		<h2>Enter New Weight</h2>
 			<input name="date" value="Enter Date" id="datepicker" onclick="this.value='';" type="text">
 			<input name="weight" value="Enter Weight" id="weightpicker" onclick="this.value='';" type="text">
-			<a href="javascript:weightSubmit()">Submit</a>
-			<h1>look here</h1>
-			<div id="here"></div>
+			<div><a href="javascript:weightSubmit()">Submit</a></div>
 		</form>	
 </div>
 
+<div id="here"></div>
 
 
 </div>

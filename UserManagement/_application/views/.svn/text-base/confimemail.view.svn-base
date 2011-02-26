@@ -1,0 +1,15 @@
+<?php include_once("header.view")  ?>
+
+<div class="section">
+    <h2>You are almost there</h2>
+    <ul>
+        <li class="listitem">
+            <div class="row">
+                <p>We have sent a confirmation email to "<?php echo $data["email"] ?>". Please check your 
+                email and follow the instructions to activate your account"</p>
+            </div>
+        </li>
+    </ul>            
+</div>
+
+<?php include_once("footer.view")  ?>

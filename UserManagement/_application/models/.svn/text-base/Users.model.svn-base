@@ -1,0 +1,289 @@
+<?php
+/* 
+-------------------------------------------------------------------------
+project: Sharp User Management System
+author : Denon Studio (denonstudio.net)
+url    : http://codecanyon.net/denonstudio
+license: http://codecanyon.net/wiki/support/legal-terms/licensing-terms/
+-------------------------------------------------------------------------
+*/
+
+
+class Users extends TAbstractModel {
+
+    public function getUser($username, $password) {
+        $username      = mysql_escape_string($username);
+        $sql           = "SELECT * FROM users WHERE username = '$username' AND password = MD5('$password')";
+        $resultSet     = $this->db->query($sql);
+        
+        if ($resultSet != null && $row = mysql_fetch_assoc($resultSet)) {
+            $userid = $row["id"];
+            $roles  = $this->getUserRoles($userid);
+            $result = array(
+                "id"              => $userid,
+                "username"        => $row["username"       ],
+                "password"        => $row["password"       ],
+                "firstname"       => $row["firstname"      ],
+                "lastname"        => $row["lastname"       ],
+                "email"           => $row["email"          ],
+                "registered_on"   => $row["registered_on"  ],
+                "confirmed_email" => $row["confirmed_email"],
+                "disabled"        => $row["disabled"       ],
+                "admin_disabled"  => $row["admin_disabled" ],                
+                "fullname"        => $row["firstname"      ] . " " . $row["lastname"],
+                "roles"           => $roles
+            );
+            return $result;
+            
+        } else {
+            return null;
+        }
+    }
+    
+    public function getById($userid, $getRoles = true) {
+        $sql           = "SELECT * FROM users WHERE id = $userid";
+        $resultSet     = $this->db->query($sql);
+        
+        if ($resultSet != null && $row = mysql_fetch_assoc($resultSet)) {
+            $result = array(
+                "id"              => $userid,
+                "username"        => $row["username"       ],
+                "password"        => $row["password"       ],
+                "firstname"       => $row["firstname"      ],
+                "lastname"        => $row["lastname"       ],
+                "email"           => $row["email"          ],
+                "registered_on"   => $row["registered_on"  ],
+                "confirmed_email" => $row["confirmed_email"],
+                "disabled"        => $row["disabled"       ],
+                "admin_disabled"  => $row["admin_disabled" ],                
+                "fullname"        => $row["firstname"      ] . " " . $row["lastname"]
+            );
+            
+            if ($getRoles)
+                $result["roles"] = $this->getUserRoles($userid);
+            
+            return $result;
+            
+        } else {
+            return null;
+        }
+    }
+
+    public function getByUsername($username) {
+        $username      = mysql_escape_string($username);
+        $sql           = "SELECT * FROM users WHERE username = '$username'";
+        $resultSet     = $this->db->query($sql);
+        
+        if ($resultSet != null && $row = mysql_fetch_assoc($resultSet)) {
+            $userid = $row["id"];
+            $roles  = $this->getUserRoles($userid);
+            $result = array(
+                "id"              => $userid,
+                "username"        => $row["username"       ],
+                "password"        => $row["password"       ],
+                "firstname"       => $row["firstname"      ],
+                "lastname"        => $row["lastname"       ],
+                "email"           => $row["email"          ],
+                "registered_on"   => $row["registered_on"  ],
+                "confirmed_email" => $row["confirmed_email"],
+                "disabled"        => $row["disabled"       ],
+                "admin_disabled"  => $row["admin_disabled" ],                
+                "fullname"        => $row["firstname"      ] . " " . $row["lastname"],
+                "roles"           => $roles
+            );
+            return $result;
+            
+        } else {
+            return null;
+        }
+    }
+    
+    public function searchUserByTerm($term, $offset, $pageSize)
+    {
+        $result    = array("totalresultscount" => 0);
+        $sql       = "SELECT * FROM users WHERE username LIKE '%$term%' OR firstname LIKE '%$term%' or lastname LIKE '%$term%' ORDER BY username LIMIT $offset, $pageSize";
+        $resultSet = $this->db->query($sql);
+        
+        if ($resultSet)
+        {
+            $searchResults = array();
+            
+            while ($row = mysql_fetch_assoc($resultSet)) 
+            {
+                $searchResults[] = array(
+                    "id"              => $row["id"             ],
+                    "fullname"        => $row["firstname"      ] . " " . $row["lastname"],
+                    "username"        => $row["username"       ],                
+                    "firstname"       => $row["firstname"      ],                
+                    "lastname"        => $row["lastname"       ],                
+                    "email"           => $row["email"          ],                
+                    "confirmed_email" => $row["confirmed_email"],                
+                    "registered_on"   => $row["registered_on"  ],                
+                    "admin_disabled"  => $row["admin_disabled" ],                
+                    "disabled"        => $row["disabled"       ]
+                ); 
+            }
+            
+            $result["entries"          ] = $searchResults;
+            $result["totalresultscount"] = $this->getSearchByTermCount($term);
+        }
+        
+        return $result;
+        
+    }
+
+    public function getSearchByTermCount($term)
+    {
+        $sql       = "SELECT COUNT(id) searchcount FROM users WHERE username LIKE '%$term%'";
+        $resultSet = $this->db->query($sql);
+        
+        if ($resultSet && $row = mysql_fetch_assoc($resultSet)) {
+            return (int)$row["searchcount"];
+        }
+        
+        return 0;
+    }
+
+    public function isUsernameAlreadyInUse($username) {
+        $result    = false;
+        $sql       = "SELECT * FROM users WHERE username = '$username'";
+        $resultSet = $this->db->query($sql);
+        
+        if ($resultSet != null && $row = mysql_fetch_assoc($resultSet)) 
+            $result = true;
+
+        return $result;
+    }
+    
+    private function getUserRoles($userid) {
+        $sql       = "SELECT r.name, r.id FROM roles r join memberships m ON (m.roleid = r.id) WHERE userid = $userid ORDER BY r.name";
+        $resultSet = $this->db->query($sql);
+        $result    = array();
+
+        while($resultSet &&$row = mysql_fetch_assoc($resultSet)) 
+        {
+            $result[] = array( 
+                "id"   => $row["id"  ],
+                "name" => $row["name"]
+            );
+        }
+        
+        return $result;
+    }
+    
+    public function createNewUser($details, $active) 
+    {
+        $password  = $details["password"];
+        $username  = strtolower($details["username" ]);
+        $firstname = strtolower($details["firstname"]);
+        $lastname  = strtolower($details["lastname" ]);
+        $email     = strtolower($details["email"    ]);
+        $disabled  = ($active) ? "0" : "1";
+        
+        $sql       = "INSERT INTO users VALUES (NULL, LOWER('$username'), MD5('$password'), LOWER('$firstname'), LOWER('$lastname'), LOWER('$email'), 0, NOW(), $disabled, 0)";
+        $resultSet = $this->db->query($sql);
+        return $this->db->getInsertId();
+    }
+    
+    public function removeUser($userid)
+    {
+        $sql = "DELETE FROM users WHERE id = $userid";
+        $this->db->query($sql);
+    }
+    
+    public function changePassword($userid, $password)
+    {
+        $sql = "UPDATE users SET password = MD5('$password') WHERE id = $userid";
+        $this->db->query($sql);
+    }
+    
+    public function updateUserRecord($userid, $newdata)
+    {
+        $firstname = strtolower($newdata["firstname"]);
+        $lastname  = strtolower($newdata["lastname" ]);
+        $email     = strtolower($newdata["email"    ]);
+        $sql       = "UPDATE users set firstname = '$firstname', lastname = '$lastname', email = '$email' WHERE id = $userid";
+
+        $this->db->query($sql);
+    }
+    
+    public function count() 
+    {
+        $sql       = "SELECT COUNT(id) usercount FROM users";
+        $resultSet = $this->db->query($sql);
+    
+        if ($resultSet && $row = mysql_fetch_assoc($resultSet)) 
+            return (int)$row["usercount"];
+    }
+    
+    public function getAllUsers($offset, $pageSize, $orderByField = "registered_on", $order = "ASC") 
+    {
+        $result    = array();
+        $sql       = "SELECT * FROM users ORDER BY $orderByField $order LIMIT $offset, $pageSize";
+        $resultSet = $this->db->query($sql);
+        
+        if (!$resultSet)
+            return $result;
+        
+        while($row = mysql_fetch_assoc($resultSet)) {
+            $userid = $row["id"];   
+            $result[] = array(
+                "id"              => $row["id"             ],
+                "fullname"        => $row["firstname"      ] . " " . $row["lastname"],
+                "username"        => $row["username"       ],                
+                "firstname"       => $row["firstname"      ],                
+                "lastname"        => $row["lastname"       ],                
+                "email"           => $row["email"          ],                
+                "confirmed_email" => $row["confirmed_email"],                
+                "registered_on"   => $row["registered_on"  ],                
+                "disabled"        => $row["disabled"       ],                
+                "admin_disabled"  => $row["admin_disabled" ],                
+                "roles"           => $this->getUserRoles($userid)
+            ); 
+        }
+        
+        return $result;
+    }
+    
+    public function disableUser($userid, $byadmin = false)
+    {
+        if ($byadmin)
+        {
+            $sql = "UPDATE users SET disabled = 1, admin_disabled = 1 WHERE id = $userid";
+        }    
+        else    
+        {
+            $sql = "UPDATE users SET disabled = 1 WHERE id = $userid";
+        }
+            
+        $this->db->query($sql);
+    }
+
+    public function enableUser($userid, $byadmin = false)
+    {
+        if ($byadmin)
+        {
+            $sql = "UPDATE users SET disabled = 0, admin_disabled = 0 WHERE id = $userid";
+        }    
+        else    
+        {
+            $sql = "UPDATE users SET disabled = 0 WHERE id = $userid";
+        }
+
+        $this->db->query($sql);
+    }
+    
+    public function userConfirmedEmail($userid)
+    {
+        $sql = "UPDATE users SET confirmed_email = 1 WHERE id = $userid";
+        $this->db->query($sql);
+    }
+
+    public function changeUserPassword($userid, $newpassword)
+    {
+        $sql = "UPDATE users SET password = MD5('$newpassword') WHERE id = $userid";
+        $this->db->query($sql);
+    }
+}
+
+?>

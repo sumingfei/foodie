@@ -1,0 +1,116 @@
+<?php 
+/* 
+-------------------------------------------------------------------------
+project: Sharp User Management System
+author : Denon Studio (denonstudio.net)
+url    : http://codecanyon.net/denonstudio
+license: http://codecanyon.net/wiki/support/legal-terms/licensing-terms/
+-------------------------------------------------------------------------
+*/
+
+
+class Roles extends TAbstractModel {
+
+    public function getRoleByName($roleName) 
+    {
+        $sql       = "SELECT * FROM roles WHERE name = '$roleName'";
+        $resultSet = $this->db->query($sql);
+        
+        if ($resultSet && $row = mysql_fetch_assoc($resultSet)) 
+        {
+            return array(
+                "id"          => $row["id"         ],
+                "name"        => $row["name"       ],           
+                "description" => $row["description"] 
+            );
+        }
+        
+        return null;
+    }
+    
+    public function getRoleById($roleId) 
+    {
+        $sql       = "SELECT * FROM roles WHERE id = $roleId";
+        $resultSet = $this->db->query($sql);
+        
+        if ($resultSet && $row = mysql_fetch_assoc($resultSet)) 
+        {
+            return array(
+                "id"          => $row["id"         ],
+                "name"        => $row["name"       ],           
+                "description" => $row["description"] 
+            );
+        }
+        
+        return null;
+    }
+
+    public function getAllRoles($withStatusData = false) 
+    {
+        $sql = "SELECT * FROM roles";
+        
+        if ($withStatusData == true) 
+            $sql .= " LEFT JOIN (SELECT COUNT(userid) rolecount, roleid FROM memberships GROUP BY roleid) a on (a.roleid = roles.id)";
+        
+        $sql .= " ORDER BY roles.name";    
+            
+        $resultSet = $this->db->query($sql);
+        $result    = array();
+        
+        if ($resultSet) 
+        {
+            while ($row = mysql_fetch_assoc($resultSet)) 
+            {
+                $result[] = array("id" => $row["id"], "name" => $row["name"], "description" => $row["description"] );
+                
+                if ($withStatusData == true) 
+                {
+                    $index = count($result) - 1;
+                    $result[$index]["count"] = $row["rolecount"];
+                    
+                    if (strcmp($result[$index]["count"], "") == 0)
+                        $result[$index]["count"] = 0;
+                }
+            }
+        }
+        return $result;
+    }
+
+    public function getAllRolesWithStatusData() 
+    {
+        return $this->getAllRoles(true);
+    }
+    
+    public function add($input)
+    {
+        $name = $input["name"       ];
+        $desc = $input["description"];
+        $sql  = "INSERT INTO roles VALUES (NULL, '$name', '$desc')";
+
+        $this->db->query($sql);
+        return $this->db->getInsertId();
+    }
+    
+    public function remove($roleid)
+    {
+        $sql = "DELETE FROM roles WHERE id = $roleid";
+        $this->db->query($sql);
+    }
+    
+    public function willDuplicate($name)
+    {
+        $sql       = "SELECT name FROM roles WHERE name = '$name'";
+        $resultSet = $this->db->query($sql);
+        return ($resultSet && mysql_num_rows($resultSet) > 0);
+    }
+    
+    public function updateRole($roleid, $input)
+    {
+        $name      = $input["name"       ];
+        $desc      = $input["description"];
+        $sql       = "UPDATE roles SET name = LOWER('$name'), description = LOWER('$desc') WHERE id = $roleid";
+        $resultSet = $this->db->query($sql);
+    }
+}
+
+?>

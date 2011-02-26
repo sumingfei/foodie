@@ -1,0 +1,72 @@
+<?php
+/* 
+-------------------------------------------------------------------------
+project: Sharp User Management System
+author : Denon Studio (denonstudio.net)
+url    : http://codecanyon.net/denonstudio
+license: http://codecanyon.net/wiki/support/legal-terms/licensing-terms/
+-------------------------------------------------------------------------
+*/
+
+class Settings extends TAbstractModel
+{
+    protected $settings;
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->refreshSettings();
+    }
+    
+    public function refreshSettings()
+    {
+        $sql            = "SELECT * FROM settings ORDER BY category";
+        $resultSet      = $this->db->query($sql);
+        $this->settings = array();
+        
+        while ($resultSet && $row = mysql_fetch_assoc($resultSet))
+        {
+            $this->settings[strtolower($row["name"])] = array(
+                "name"        => $row["name"       ],
+                "value"       => $row["value"      ],
+                "description" => $row["description"],
+                "category"    => $row["category"   ]
+            );        
+        }
+    }
+    
+    public function getAllSettings()
+    {
+        return $this->settings;
+    }
+    
+    public function valueOf($name)
+    {
+        $name = strtolower($name);    
+
+        if (isset($this->settings[$name]))
+            return $this->settings[$name]["value"]; 
+
+        TExceptions::throw_invalid_setting_exception($name);
+    }
+    
+    public function updateSettings($settings)
+    {
+        foreach($settings as $entry)
+        {
+            $name  = $entry["name" ];
+            $value = $entry["value"];
+            $sql   = "UPDATE settings SET value = '$value' WHERE name = '$name'";
+            $this->db->query($sql);
+        }
+    }
+    
+    public function getEmailSettings()
+    {
+        return array(
+        
+        
+        );
+    }
+}
+?>

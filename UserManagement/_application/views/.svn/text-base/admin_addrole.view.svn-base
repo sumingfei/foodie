@@ -1,0 +1,51 @@
+<?php 
+include_once("header.view"); 
+
+$errors = (isset($data["input_error"]) ? $data["input_error"] : null);
+$input  = (isset($data["input"      ]) ? $data["input"      ] : null);
+
+function wrapErrorWithTag($message) 
+{
+    return "<p class=\"error\">" . $message . "</p>";
+}
+
+function printError($fieldname, $errors) 
+{
+    if (isset($errors) && isset($errors[$fieldname])) 
+        echo wrapErrorWithTag("&raquo; " . $errors[$fieldname], "p");
+}
+
+function printInput($fieldname, $input) 
+{
+    if (isset($input) && isset($input[$fieldname])) 
+        echo $input[$fieldname];
+}
+?>
+
+<div class="section">
+    <h2>Create new roles</h2>
+    <form action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post">
+        <ul>
+            <li class="listitem">
+                <div class="row">
+                    <label for="txtname">Name:</label>
+                    <input class="textbox" id="txtname" name="name" type="text" value="<?php printInput("name", $input); ?>" maxlength="255"/>
+                    <?php printError("name", $errors); ?>
+                </div>
+    
+                <div class="row">
+                    <label for="txtdescription">Description:</label>
+                    <input class="textbox" id="txtdescription" name="description" type="text" value="<?php printInput("description", $input); ?>" maxlength="80"/>
+                    <?php printError("description", $errors); ?>
+                </div>
+            </li>    
+            <li class="listitem">
+                <div class="row rightalign">
+                    <input class="form-button" name="create" type="submit" value="Create"/>
+                </div>
+            </li>    
+        </ul>    
+    </form>
+</div>
+
+<?php include_once("footer.view"); ?>

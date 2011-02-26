@@ -1,0 +1,38 @@
+<?php 
+include_once("header.view");    
+
+$error = (isset($data["error"])) ? $data["error"] : null;
+if ($error)
+{
+?>
+<div class="section">
+    <h2>Oops! there was a problem.</h2>
+    <ul>
+        <li class="listite,">    
+            <div class="error">
+                <p><?php echo $error; ?></p>
+            </div>
+        </li>
+    <ul>        
+</div>
+<?php 
+}
+else
+{
+    $account = $data["account"];
+?>
+<div class="section">
+    <h2>Cool, <?php echo $account["username"]; ?>. You just activated your account.</h2>
+    <ul>
+        <li class="listitem">    
+            <div class="">
+                <p>Hi. Thank you for activating your account. Please go ahead and sign in to begin your exprience.</p>
+                <p><a href="<?php echo SITE_URL; ?>">continue<a></p>
+            </div>
+        </li>
+    <ul>        
+</div>
+<?php 
+}
+include_once("footer.view");    
+?>

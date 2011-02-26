@@ -1,0 +1,28 @@
+[Mon Feb 14 20:28:48 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/robots.txt
+[Mon Feb 14 21:23:07 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/a
+[Fri Feb 18 17:41:44 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/robots.txt
+[Fri Feb 18 19:47:19 2011] [error] [client 58.218.204.110] script 'C:/wamp/www/Foodie/ip.php' not found or unable to stat
+[Sun Feb 20 00:45:51 2011] [error] [client 192.168.1.1] File does not exist: C:/wamp/www/Foodie/favicon.ico
+[Sun Feb 20 00:45:54 2011] [error] [client 192.168.1.1] File does not exist: C:/wamp/www/Foodie/favicon.ico
+[Sun Feb 20 00:45:55 2011] [error] [client 130.126.170.249] File does not exist: C:/wamp/www/Foodie/favicon.ico
+[Sun Feb 20 00:46:00 2011] [error] [client 130.126.170.249] File does not exist: C:/wamp/www/Foodie/favicon.ico
+[Sun Feb 20 16:42:09 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/robots.txt
+[Sun Feb 20 16:42:09 2011] [error] [client 66.249.71.121] PHP Warning:  include(header.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in C:\\wamp\\www\\Foodie\\index.php on line 2
+[Sun Feb 20 16:42:09 2011] [error] [client 66.249.71.121] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'header.php' for inclusion (include_path='.;C:\\php5\\pear') in C:\\wamp\\www\\Foodie\\index.php on line 2
+[Sun Feb 20 17:30:27 2011] [error] [client 207.46.13.43] File does not exist: C:/wamp/www/Foodie/robots.txt
+[Sun Feb 20 17:31:23 2011] [error] [client 207.46.13.43] PHP Warning:  include(header.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in C:\\wamp\\www\\Foodie\\index.php on line 2
+[Sun Feb 20 17:31:23 2011] [error] [client 207.46.13.43] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'header.php' for inclusion (include_path='.;C:\\php5\\pear') in C:\\wamp\\www\\Foodie\\index.php on line 2
+[Sun Feb 20 18:58:51 2011] [error] [client 66.249.71.121] PHP Warning:  include(header.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in C:\\wamp\\www\\Foodie\\restaurantSubmission.php on line 2
+[Sun Feb 20 18:58:51 2011] [error] [client 66.249.71.121] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'header.php' for inclusion (include_path='.;C:\\php5\\pear') in C:\\wamp\\www\\Foodie\\restaurantSubmission.php on line 2
+[Mon Feb 21 15:48:11 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/robots.txt
+[Mon Feb 21 15:48:12 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/function.include
+[Mon Feb 21 19:45:23 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/function.include
+[Mon Feb 21 19:45:25 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/test2.html
+[Mon Feb 21 21:26:11 2011] [error] [client 58.218.204.110] script 'C:/wamp/www/Foodie/proxy-1.php' not found or unable to stat
+[Wed Feb 23 10:56:50 2011] [error] [client 66.249.71.121] File does not exist: C:/wamp/www/Foodie/robots.txt
+[Wed Feb 23 10:56:50 2011] [error] [client 66.249.71.121] script 'C:/wamp/www/Foodie/fatsecret2.php' not found or unable to stat
+[Wed Feb 23 17:51:55 2011] [error] [client 192.168.1.1] File does not exist: C:/wamp/www/Foodie/favicon.ico, referer: http://www.foodieavenue.com/
+[Wed Feb 23 17:52:22 2011] [error] [client 71.156.62.9] File does not exist: C:/wamp/www/Foodie/favicon.ico
+[Wed Feb 23 17:52:25 2011] [error] [client 71.156.62.9] File does not exist: C:/wamp/www/Foodie/favicon.ico
+[Wed Feb 23 17:52:25 2011] [error] [client 71.156.62.9] File does not exist: C:/wamp/www/Foodie/favicon.ico
+[Wed Feb 23 17:52:31 2011] [error] [client 71.156.62.9] File does not exist: C:/wamp/www/Foodie/favicon.ico

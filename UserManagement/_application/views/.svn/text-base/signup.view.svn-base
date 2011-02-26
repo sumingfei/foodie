@@ -1,0 +1,65 @@
+<?php 
+    include_once("header.view"); 
+    
+    $errors = (isset($data["errors"])) ? $data["errors"] : null;
+    $input  = (isset($data["input" ])) ? $data["input" ] : null;
+    
+    function wrapErrorWithTag($message) 
+    {
+        return "<p class=\"error\">" . $message . "</p>";
+    }
+    
+    function printError($fieldname, $errors) 
+    {
+        if (isset($errors) && isset($errors[$fieldname])) 
+            echo wrapErrorWithTag("&raquo; " . $errors[$fieldname], "p");
+    }
+
+    function printInput($fieldname, $input) 
+    {
+        if (isset($input) && isset($input[$fieldname])) 
+            echo $input[$fieldname];
+    }
+?>
+
+<div class="section">
+    <h2>Sign up</h2>
+    <form name="signupform" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> 
+        <ul>
+            <li class="listitem">
+                <div class="row">
+                    <label for="txtusername">Username:</label>
+                    <input class="textbox" id="txtusername" name="txtusername" type="text" value="<?php printInput("username", $input); ?>" maxlength="80"/>
+                    <?php printError("username", $errors); ?>
+                </div>
+                <div class="row">
+                    <label for="txtpassword">Password:</label>
+                    <input class="textbox" id="txtpassword" name="txtpassword" type="password" value="<?php printInput("password", $input); ?>" maxlength="80"/>
+                    <?php printError("password", $errors); ?>
+                </div>
+                <div class="row">
+                    <label for="txtemail">Email address:</label>
+                    <input class="textbox" id="txtemail" name="email" type="text" value="<?php printInput("email", $input); ?>" maxlength="255"/>
+                    <?php printError("email", $errors); ?>
+                </div>
+                <div class="row">
+                    <label for="txtfirstname">First name:</label>
+                    <input class="textbox" id="txtfirstname" name="firstname" type="text" value="<?php printInput("firstname", $input); ?>" maxlength="80"/>
+                    <?php printError("firstname", $errors); ?>
+                </div>
+                <div class="row">
+                    <label for="txtlastname">Last name:</label>
+                    <input class="textbox" id="txtlastname" name="lastname" type="text" value="<?php printInput("lastname", $input); ?>" maxlength="80"/>
+                    <?php printError("lastname", $errors); ?>
+                </div>
+            </li>
+            <li class="listitem">
+                <div class="row rightalign">
+                    <input class="form-button" name="signup" type="submit" value="Sign up"/>
+                </div>
+            </li>
+        </ul>   
+    </form>
+</div>
+
+<?php include_once("footer.view") ?>

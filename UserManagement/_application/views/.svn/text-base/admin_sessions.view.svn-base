@@ -1,0 +1,89 @@
+<?php include_once("header.view"); ?>
+
+<div class="section">
+    <h2>Active Sessions</h2>
+    <ul>    
+<?php
+
+$sessions = $data["sessions"];
+
+foreach($sessions as $session)
+{
+?>    
+        <li class="listitem">
+            <div class="row definition-list">
+                <span class="term">Session started at:</span><span class="def"><?php echo $session["started_on"]; ?></span>
+                <span class="term">Username:</span><span class="def"><?php echo $session["username"]; ?></span>
+            </div>    
+        </li>
+<?php
+}
+?>
+    </ul>    
+</div>
+<?php
+
+$paging      = $data  ["paging"      ];
+$currentPage = $paging["current"     ];
+$pagesize    = $paging["pagesize"    ];
+$total       = $paging["totalrecords"];
+$previous    = $paging["previous"    ];
+$next        = $paging["next"        ];
+
+$optionSelected = "selected=\"selected\"";
+?>
+
+<div class="section paginations">
+    <select id="pagesize" >
+        <option value="10"  <?php echo ($pagesize == 10 ) ? $optionSelected : "" ?>">10</option>
+        <option value="20"  <?php echo ($pagesize == 20 ) ? $optionSelected : "" ?>">20</option>
+        <option value="50"  <?php echo ($pagesize == 50 ) ? $optionSelected : "" ?>">50</option>
+        <option value="100" <?php echo ($pagesize == 100) ? $optionSelected : "" ?>">100</option>
+    </select>
+    <ul>
+    <li class="paging info">
+        <span><?php echo $total; ?> total users</span>
+    </li>
+<?php   
+if ($total > $pagesize)
+{
+    if ($currentPage != $next) 
+    {
+?>
+        <li class="paging">
+            <a href="<?php echo $_SERVER["PHP_SELF"] . "?pagesize=$pagesize&page=$next"; ?>">Next</a>
+        </li>
+<?php
+    }
+    
+    $pages = $paging["pages"];
+    for($i = count($pages) - 1; $i >= 0; $i--) 
+    {
+        $pageNumber = $pages[$i];
+?>
+        <li class="paging<?php echo ($pageNumber == $currentPage) ? " current" : "" ?>">
+            <a href="<?php echo $_SERVER["PHP_SELF"] . "?pagesize=$pagesize&page=$pageNumber" ?>"><?php echo $pageNumber ?></a>
+        </li>
+<?php
+    }
+    
+    if ($currentPage != $previous)
+    { 
+?>
+        <li class="paging">
+            <a href="<?php echo $_SERVER["PHP_SELF"] ."?pagesize=$pagesize&page=$previous"; ?>">Previous</a>
+        </li>
+<?php
+    }
+} 
+?>
+    </ul>
+</div>
+<script type="text/javascript">
+    jQuery("#pagesize").change(function(e){
+        var linkToThisPage = "<?php echo $_SERVER["PHP_SELF"] . "?pagesize=" ?>";
+        document.location.href = linkToThisPage + jQuery(this).attr("value");
+    });
+</script>
+
+<?php include_once("footer.view"); ?>
