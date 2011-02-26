@@ -21,7 +21,7 @@ body {
 	text-align: center;
 	font: 12px Arial;
 	color: #666666;
-	background: #85d890 url('/images/bg.jpg') repeat-x top left;
+	background: #85d890 url('/Foodie/images/bg.jpg') repeat-x top left;
 }
 #foodie {
 	display: block;
@@ -79,11 +79,11 @@ img.avatar { border: 1px solid #ddd; }
 	margin: 0 auto;
 	width: 975px;
 	text-align: justify;
-	background: url('/images/bg2.jpg') repeat-y top left;
+	background: url('/Foodie/images/bg2.jpg') repeat-y top left;
 }
 
 #header {
-	background: url('/images/header2.jpg') no-repeat top left;
+	background: url('/Foodie/images/header2.jpg') no-repeat top left;
 	height: 186px;
 }
 
@@ -172,7 +172,7 @@ img.avatar { border: 1px solid #ddd; }
 	padding: 10px 10px 20px 10px;
 	clear: both;
 	text-align: center;
-	background: url('/images/footer.jpg') no-repeat top left;
+	background: url('/Foodie/images/footer.jpg') no-repeat top left;
 }
 
 #footer p.showoff {
@@ -299,7 +299,7 @@ span.page-numbers {
 	border-bottom: 1px solid #bbbbbb;
 	padding: 4px 4px 2px 5px;
 	margin-left: 5px;
-	background-image: url('images/page-links-background.gif');
+	background-image: url('/Foodie/images/page-links-background.gif');
 	background-repeat: no-repeat;
 	background-position: 0 0;
 }
@@ -618,7 +618,7 @@ p.rss-link {
 
 a.rss-link {
 	padding: 6px 0 6px 20px;
-	background-image: url('images/feed-icon-16x16.gif');
+	background-image: url('/Foodie/images/feed-icon-16x16.gif');
 	background-repeat: no-repeat;
 	background-position: 0 50%;
 }

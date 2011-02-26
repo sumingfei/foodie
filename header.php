@@ -52,8 +52,7 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
 <a href="index.php" id="foodie"></a>
 
 <ul id="navbar">
-	<li><a href="index.php">Home |</a>
-	</li>
+	<li><a href="index.php">Home |</a></li>
 	<li><a href="user.php">User |</a></li>
 	<li><a href="comments.php">Comments |</a></li>
 	<li><a href="weightlog.php">WeightLog |</a></li>

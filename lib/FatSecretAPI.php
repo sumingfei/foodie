@@ -158,10 +158,6 @@ class FatSecretAPI{
 		$returnXML = $this->GetQueryResponse($normalizedUrl, $normalizedRequestParameters . '&' . OAuthBase::$OAUTH_SIGNATURE . '=' . urlencode($signature));
 		$doc = new SimpleXMLElement($returnXML);
 
-		/*foreach($doc->food as $singleFood){
-		
-			echo '<br>' . $singleFood->food_id . ' ' . $singleFood->food_name . ' :: '.$singleFood->food_description . '</br>';
-			}*/
 		$this->ErrorCheck($doc);
 		
 		return $returnXML;

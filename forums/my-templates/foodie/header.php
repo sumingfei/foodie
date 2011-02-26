@@ -38,19 +38,18 @@ if ( bb_is_profile() ) {
 <a href="/index.php" id="foodie"></a>
 
 <ul id="navbar">
-	<li><a href="/index.php">Home |</a>
-	</li>
-	<li><a href="/user.php">User |</a></li>
-	<li><a href="/comments.php">Comments |</a>
-	</li>
-	<li><a href="/fatsecret.php">Fat Secret |</a><ul>
-		<li><a href="/fatsecret2.php">Fat Secret 2</a></li>
+	<li><a href="../index.php">Home |</a></li>
+	<li><a href="../user.php">User |</a></li>
+	<li><a href="../comments.php">Comments |</a></li>
+	<li><a href="../weightlog.php">WeightLog |</a></li>
+	<li><a href="../fatsecret.php">Fat Secret |</a><ul>
+		<li><a href="../fatsecret2.php">Fat Secret 2</a></li>
 		<li><a href="#">Second Subitem</a></li>
 		<li><a href="#">Numero Tres</a></li></ul>
 	</li>
-	<li><a href="/restaurantSubmission.php">Restaurant |</a>
+	<li><a href="../restaurantSubmission.php">Restaurant |</a>
 	</li>
-	<li><a href="/forums">Forums</a></li>
+	<li><a href="../forums">Forums</a></li>
 	<!-- .. <li><a href="jobs.php">Work</a></li>  .. -->
 	<!-- ... and so on ... -->
 </ul>
