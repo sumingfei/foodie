@@ -61,9 +61,9 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
 	<li><a href="user.php">User |</a></li>
 	<li><a href="comments.php">Comments |</a>
 	</li>
+	<li><a href="weightlog.php">Weight Log |</a></li>
 	<li><a href="fatsecret2.php">Fat Secret |</a><ul>
 		<li><a href="fatsecret.php">Fat Secret 2</a></li>
-		<li><a href="weightlog.php">Weight Log</a></li>
 		<li><a href="nutritionpanel.html">Numero Tres</a></li></ul>
 	</li>
 	<li><a href="restaurantSubmission.php">Restaurant |</a>

@@ -14,13 +14,33 @@ include('header.php');
 	.scroll-bar-wrap .ui-slider-handle .ui-icon { margin: -8px auto 0; position: relative; top: 50%; }
 	</style>
 	<script>
+	function changeWeight(date, weight){
+		//$("#here").append('<div>'+date+' '+weight+'</div>');
+		$.ajax({
+				type	: "GET",
+				url		: "saveWeight.php",
+				data	: {"date": date, "weight": weight},
+				success : function(response)
+				{
+					$("#here").append('<div>'+date+' '+weight+'</div>');
+				}
+		});
+	}
+	function weightSubmit(){
+		$date = $("#datepicker").val();
+		$weight = $("#weightpicker").val();
+		console.debug($date);
+		changeWeight($date, $weight);
+	}
 	$(function() {
 		$( "#datepicker" ).datepicker({
 			showOn: "both",
 			buttonImage: "images/calendar.gif",
 			buttonImageOnly: true
 		});
-
+		$(".button").click(function() {  
+			console.debug("clicked");
+		});  
 		//scrollpane parts
 		var scrollPane = $( ".scroll-pane" ),
 			scrollContent = $( ".scroll-content" );
@@ -99,7 +119,8 @@ include('header.php');
 		<?php
 		for($i = 14; $i >= 0; $i--){
 		$newdate = strtotime(-$i."day", time());
-		print '<div class="scroll-content-item ui-widget-header"><p style="float: left">'. date("Y-m-d", $newdate ).'</p> <input style="margin-top: 10%; width:50px" value=""/></div>';
+		$date2 = date("m/d/Y", $newdate);
+		print '<div class="scroll-content-item ui-widget-header"><p style="float: left">'. date("M d", $newdate ).'</p> <input style=" margin-left: 25%; height: 50px; width:50px; font-size: 20px;" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
 		//print '<div class="scroll-content-item ui-widget-header">'. $i.'</div>';
 		}
 		//print '<div>'. (time()/86400).'</div>';
@@ -111,13 +132,17 @@ include('header.php');
 </div>
 
 <div style="height: 606px;" id="sidebar">
-		<form method="post" action="">
+		<form method="get" action="">
 		<h2>Enter New Weight</h2>
 			<input name="date" value="Enter Date" id="datepicker" onclick="this.value='';" type="text">
-			<input name="weight" value="Enter Weight" id="" onclick="this.value='';" type="text">
-			<input type="submit" value="Submit">
+			<input name="weight" value="Enter Weight" id="weightpicker" onclick="this.value='';" type="text">
+			<a href="javascript:weightSubmit()">Submit</a>
+			<h1>look here</h1>
+			<div id="here"></div>
 		</form>	
 </div>
+
+
 
 </div>
 <?php
