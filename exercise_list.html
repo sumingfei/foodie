@@ -1,0 +1,781 @@
+<html><head>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+<script>
+$(function() {
+	$("#mybutton").click(function(){
+	var myval = document.getElementById("mytable");
+	var myRows = myval.rows;
+	var length = myRows.length;
+	//console.debug(myRows[1].cells[2].textContent);
+	var data = new Array();
+	var i;
+	for(i = 0; i < length; i++)
+	{
+		var temp = new Object();
+		temp['name'] = myRows[i].cells[0].textContent;
+		temp['type'] = myRows[i].cells[1].textContent;
+		temp['calorie'] = myRows[i].cells[2].textContent;
+		data[i] = temp;
+	}
+		//console.debug(data);
+		
+		$.ajax({
+				type 	: "POST",
+				url 	: "saveExeTemp.php",
+				data	: {"myList" : data,
+					"length" : length},
+				success : function(response)
+				{
+					console.debug("success");
+				}
+		});
+	});
+});
+
+</script>
+<input type="button" id="mybutton" name="save" value="Save"/>
+<table id="mytable" width="800px" border="0" cellpadding="3" cellspacing="3"><tbody><tr>
+<td><font face="arial" size="2">bicycling, &lt;10 mph, leisure, to work or for pleasure (Taylor Code 115)</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">unicycling</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">bicycling, &gt;20 mph, racing, not drafting</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">1067</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">bicycling, 16-19 mph, racing/not drafting or &gt;19 mph drafting, very fast, racing general</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr>
+<td><font face="arial" size="2">bicycling, 14-15.9 mph, racing or leisure, fast, vigorous effort</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">bicycling, 12-13.9 mph, leisure, moderate effort</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">bicycling, 10-11.9 mph, leisure, slow, light effort</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">bicycling, general</font></td><td><font face="arial" size="2">bicycling</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">rowing, stationary, 100 watts, moderate effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">rowing, stationary, 150 watts, vigorous effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">567</font></center></td></tr><tr>
+<td><font face="arial" size="2">rowing, stationary, 200 watts, very vigorous effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">ski machine, general</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">slimnastics, jazzercise</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">stretching, hatha yoga</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">mild stretching</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">teaching aerobic exercise class</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">water aerobics, water calisthenics</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">weight lifting (free, nautilus or universal-type), light or moderate effort, light workout, general</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">whirlpool, sitting</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">rowing, stationary, 50 watts, light effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">rowing, stationary ergometer, general</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">stair-treadmill ergometer, general</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">bicycling, stationary, general</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">bicycling, stationary, 50 watts, very light effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">bicycling, stationary, 100 watts, light effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">bicycling, stationary, 150 watts, moderate effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">bicycling, stationary, 200 watts, vigorous effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">700</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">bicycling, stationary, 250 watts, very vigorous effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">833</font></center></td></tr><tr>
+<td><font face="arial" size="2">calisthenics (e.g. pushups, situps, pullups, jumping jacks), heavy, vigorous effort</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">calisthenics, home exercise, light or moderate effort, general  (example:  back exercises), going up &amp;  down from floor (Taylor Code 150)</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">circuit training, including some aerobic movement with minimal rest, general</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">weight lifting (free weight, nautilus or universal-type), power lifting or body building, vigorous effort (Taylor Code 210)</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">health club exercise, general (Taylor Code 160)</font></td><td><font face="arial" size="2">conditioning exercise</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">ballroom, dancing fast (Taylor Code 125)</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr>
+<td><font face="arial" size="2">ballroom, fast (disco, folk, square), line dancing, Irish step dancing, polka, contra, country</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">ballroom, slow (e.g. waltz, foxtrot, slow dancing),  samba, tango, 19th C, mambo, chacha</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">Anishinaabe Jingle Dancing  or other traditional American Indian dancing</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">general, Greek, Middle Eastern, hula, flamenco, belly, and swing dancing</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">aerobic, high impact</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">aerobic, low impact</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">aerobic, step, with 10 ? 12 inch step</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">aerobic, step, with 6 ? 8 inch step</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">567</font></center></td></tr><tr>
+<td><font face="arial" size="2">aerobic, general</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">ballet or modern, twist, jazz, tap, jitterbug</font></td><td><font face="arial" size="2">dancing</font></td><td><center><font color="#ffff00" face="arial" size="2">320</font></center></td></tr><tr>
+<td><font face="arial" size="2">hunting, deer, elk, large game (Taylor Code 170)</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">hunting, duck, wading</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">hunting, general</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">hunting, pheasants or grouse (Taylor Code 680)</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">hunting, rabbit, squirrel, prairie chick, raccoon, small game (Taylor Code 690)</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">pistol shooting or trap shooting, standing</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">hunting, bow and arrow or crossbow</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">fishing, ice, sitting</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">fishing, general</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">digging worms, with shovel</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">fishing from river bank and walking</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">fishing from boat, sitting</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">fishing from river bank, standing (Taylor Code 660)</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">fishing in stream, in waders (Taylor Code 670)</font></td><td><font face="arial" size="2">fishing and hunting</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">cleaning, heavy or major (e.g. wash car, wash windows, clean garage), vigorous effort</font></td><td><font face="arial" size="2">home acivities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting - playing with child(ren) ? light,  only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking - light, non-cleaning (readying to leave, shut/lock doors, close windows, etc.)</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">standing - light (pump gas, change light bulb, etc.)</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">moving household items upstairs, carrying boxes or furniture</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">building a fire inside</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">watering  plants</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">implied walking - putting away household items - moderate effort</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">standing - packing/unpacking boxes, occasional lifting of household items light - moderate effort</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sweeping garage, sidewalk or outside of house</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">scrubbing floors, on hands and knees, scrubbing bathroom, bathtub</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">253</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">moving furniture, household items, carrying boxes</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing - playing with child(ren) ? light,  only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">187</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">walk/run - playing with child(ren) ? moderate,  only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">walk/run - playing with child(ren) ? vigorous,  only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walk/run, playing with animals, vigorous, only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">walk/run, playing with animals, moderate, only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walk/run, playing with animals, light, only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">187</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">stand, playing with animals, light, only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">187</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sit, play ing with animals, light, only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">reclining with baby</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">elder care, disabled adult, only active periods</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">child care:  standing - dressing, bathing, grooming, feeding, occasional lifting of child-light effort</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">child care:  sitting/kneeling - dressing, bathing, grooming, feeding, occasional lifting of child-light effort, general</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">carrying small children</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - bathing dog</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">maple syruping/sugar bushing (including carrying buckets, carrying wood)</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">making bed</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">butchering animals</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">vacuuming</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">wash dishes; clearing dishes from table ? walking</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">wash dishes - standing or in general (not broken into stand/walk components)</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr>
+<td><font face="arial" size="2">cleaning, light (dusting, straightening up, changing linen, carrying out trash)</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">cleaning, house or cabin, general</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">multiple household tasks all at once, vigorous effort</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">multiple household tasks all at once, moderate effort</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">multiple household tasks all at once, light effort</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">mopping</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">carpet sweeping, sweeping floors</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">220</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">cooking or food preparation - standing or sitting or in general (not broken into stand/walk components), manual appliances</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">serving food, setting table - implied walking or standing</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">implied walking - putting away clothes, gathering clothes to pack, putting away laundry</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr>
+<td><font face="arial" size="2">implied standing - laundry, fold or hang clothes, put clothes in washer or dryer, packing suitcase</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">sitting - knitting, sewing, lt. wrapping (presents)</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">ironing</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">non-food shopping, standing or walking</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr>
+<td><font face="arial" size="2">food shopping with or without a grocery cart, standing or walking</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">cooking Indian bread on an outside stove</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">carrying groceries upstairs</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">500</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">putting away groceries (e.g.  carrying groceries, shopping without a grocery cart), carrying packages</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">feeding animals</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">cooking or food preparation - walking</font></td><td><font face="arial" size="2">home activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">put on and removal of tarp - sailboat</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">painting, (Taylor Code 630)</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">painting, papering, plastering, scraping, inside house, hanging sheet rock, remodeling</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">painting, outside home (Taylor Code 650)</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">roofing</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sanding floors with a power sander</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">scraping and painting sailboat or powerboat</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">spreading dirt with a shovel</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">washing and waxing hull of sailboat, car, powerboat, airplane</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">washing fence, painting fence</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">wiring, plumbing</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">laying tile or linoleum, repairing appliances</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">laying or removing carpet</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">hanging storm windows</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">airplane repair</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">automobile body work</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">automobile repair</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">carpentry, general, workshop (Taylor Code 620)</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">carpentry, outside house, installing rain gutters,  building a fence, (Taylor Code 640)</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">carpentry, finishing or refinishing cabinets or furniture</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">carpentry, sawing hardwood</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">500</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">caulking, chinking log cabin</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">caulking, except log cabin</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">cleaning gutters</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">excavating garage</font></td><td><font face="arial" size="2">home repair</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - reading</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">standing - miscellaneous</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting - arts and crafts, light effort</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting - arts and crafts, moderate effort</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - arts and crafts, light effort</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing - arts and crafts, moderate effort</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">sitting - in class, general, including note-taking or class discussion</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting - studying, general, including reading and/or writing</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting - talking or talking on the phone</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing - talking or talking on the phone</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting - writing, desk work,  typing</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">sitting - reading, book, newspaper, etc.</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">87</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - drawing (writing), casino gambling, duplicating machine</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting - card playing, playing board games</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - arts and crafts, vigorous effort</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">retreat/family reunion activities involving sitting, relaxing, talking, eating</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">lying quietly, watching television</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr>
+<td><font face="arial" size="2">lying quietly, doing nothing, lying in bed awake, listening to music (not talking or reading)</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting quietly and watching television</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting quietly, sitting smoking, listening to music (not talking or reading), watching a movie in a theater</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sleeping</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">60</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">standing quietly (standing in a line)</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">80</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">reclining - writing</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr>
+<td><font face="arial" size="2">reclining - talking or talking on phone</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">touring/traveling/vacation involving walking and riding</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting at a sporting event, spectator</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">camping involving standing, walking, sitting, light-to-moderate effort</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">meditating</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">reclining - reading</font></td><td><font face="arial" size="2">inactivity quiet</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr>
+<td><font face="arial" size="2">carrying, loading or stacking wood, loading/unloading or carrying lumber</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, gathering gardening tools</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">implied walking/standing - picking up yard, light,  picking flowers or vegetables</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">picking fruit off trees, picking fruits/vegetables, moderate effort</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">gardening, general</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">weeding, cultivating garden (Taylor Code 580)</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">watering lawn or garden, standing or walking</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">walking, applying fertilizer or seeding a lawn</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">mowing lawn, walk, hand mower (Taylor Code 570)</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">mowing lawn, riding mower (Taylor Code 550)</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">mowing lawn, general</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">laying sod</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">laying crushed rock</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">gardening with heavy power tools, tilling a garden, chain saw</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">digging, spading, filling garden, composting, (Taylor Code 590)</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">digging sandbox</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">clearing land, hauling branches,  wheelbarrow chores</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">chopping wood, splitting logs</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">mowing lawn, walk, power mower</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">mowing lawn, power mower (Taylor Code 590)</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">operating snow blower, walking</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">trimming shrubs or trees, power cutter,  using leaf blower, edger</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">trimming shrubs or trees, manual cutter</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">shoveling snow, by hand (Taylor Code 610)</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">sacking grass, leaves</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">riding snow blower</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">raking roof with snow rake</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">raking lawn (Taylor Code 600)</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">raking lawn</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">287</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">planting trees</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">planting seedlings, shrubs</font></td><td><font face="arial" size="2">lawn and garden</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">violin</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">woodwind</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">guitar, classical, folk (sitting)</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">guitar, rock and roll band (standing)</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">marching band, playing an instrument, baton twirling (walking)</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">marching band, drum major (walking)</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">trumpet</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">trombone</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">piano or organ</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">accordion</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">cello</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">conducting</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">drums</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">flute (sitting)</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">horn</font></td><td><font face="arial" size="2">music playing</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">shoveling, heavy (more than 16 pounds/minute)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">shoveling, light (less than 10 pounds/minute)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">shoveling, moderate (10 to 15 pounds/minute)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting - light office work, general (chemistry lab work, light use of hand tools, watch repair or micro-assembly, light assembly/repair),  sitting, reading, driving at wo</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting meetings, general, and/or with talking involved,  eatting at a business meeting</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting; moderate (heavy levers, riding mower/forklift, crane operation),  teaching stretching or yoga</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">standing; light (bartending, store clerk, assembling, filing, duplicating, putting up a Christmas tree), standing and talking at work, changing clothes when teaching p</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing; light/moderate (assemble/repair heavy parts, welding, stocking, auto repair, pack boxes for moving, etc.), patient care (as in nursing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">lifting items continuously, 10 ? 20 lbs, with limited walking or resting</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing; moderate (assembling at fast rate, intermittent, lifting 50 lbs, hitch/twisting ropes)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing; moderate/heavy (lifting more than 50 lbs, masonry, painting, paper hanging)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">steel mill, fettling</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">steel mill, forging</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">shoveling, digging ditches</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">567</font></center></td></tr><tr>
+<td><font face="arial" size="2">shoe repair, general</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">police, making an arrest (standing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">machine tooling, operating punch press</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">machine tooling, tapping and drilling</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">machine tooling, welding</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">masonry, concrete</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">masseur, masseuse (standing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">moving, pushing heavy objects, 75 lbs or more (desks, moving van work)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">500</font></center></td></tr><tr>
+<td><font face="arial" size="2">skindiving or SCUBA diving as a frogman (Navy Seal)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">operating heavy duty equipment/automated, not driving</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">orange grove work</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">printing (standing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">police, directing traffic (standing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">police, driving a squad car (sitting)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">police, riding in a squad car (sitting)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">87</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">steel mill, hand rolling</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">steel mill, merchant mill rolling</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">walking on job, 3.0 mph, in office, moderate speed, not carrying anything</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">220</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking on job, 3.5 mph, in office, brisk speed, not carrying anything</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">253</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 2.5 mph, slowly and carrying light objects less than 25 pounds</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, gathering things at work, ready to leave</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 3.0 mph, moderately and carrying light objects less than 25 lbs</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">walking, pushing a wheelchair</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 3.5 mph, briskly and carrying objects less than 25 pounds</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking or walk downstairs or standing, carrying objects about 25 to 49 pounds</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking or walk downstairs or standing, carrying objects about 50 to 74 pounds</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking or walk downstairs or standing, carrying objects about 75 to 99 pounds</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">500</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">walking or walk downstairs or standing, carrying objects about 100 pounds or over</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">567</font></center></td></tr><tr>
+<td><font face="arial" size="2">working in scene shop, theater actor, backstage employee</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">teach physical education, exercise, sports classes (non-sport play)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking on job, less than 2.0 mph (in office or lab area), very slow</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">using heavy tools (not power) such as shovel, pick, tunnel bar, spade</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">steel mill, removing slag</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">733</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">steel mill, tending furnace</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">500</font></center></td></tr><tr>
+<td><font face="arial" size="2">steel mill, tipping molds</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">steel mill, working in general</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">tailoring, cutting</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">tailoring, general</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">tailoring, hand sewing</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">tailoring, machine sewing</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">tailoring, pressing</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">tailoring, weaving</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">truck driving, loading and unloading truck (standing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">typing, electric, manual or computer</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">using heavy power tools such as pneumatic tools (jackhammers, drills, etc.)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">teach physical education, exercise, sports classes (participate in the class)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr>
+<td><font face="arial" size="2">machine tooling, operating lathe</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">bakery, general, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">custodial work - dusting, light effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">custodial work ? feathering arena floor, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">custodial work - general cleaning, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">custodial work - mopping, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">custodial work - take out trash, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">custodial work - vacuuming, light effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">custodial work - vacuuming, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">electrical work, plumbing</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, baling hay, cleaning barn, poultry work,  vigorous effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">farming, chasing cattle, non-strenuous  (walking), moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, chasing cattle or other livestock on horseback, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">farming, chasing cattle or other livestock, driving, light effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, driving harvester, cutting hay, irrigation work</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">custodial work - cleaning sink and toilet, light effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">custodial work - buffing the floor with electric buffer</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">bakery, light effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">bookbinding</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">building road (including hauling debris, driving heavy machinery)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">building road, directing traffic (standing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">carpentry, general</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">carrying heavy loads, such as bricks</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">carrying moderate loads up stairs, moving boxes (16-40 pounds)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">chambermaid, making bed (nursing)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">coal mining, drilling coal, rock</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">coal mining, erecting supports</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">coal mining, general</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">coal mining, shoveling coal</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">construction, outside, remodeling</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, driving tractor</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">farming, feeding small animals</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">forestry, hoeing</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">forestry, planting by hand</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">forestry, sawing by hand</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">forestry, sawing, power</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">forestry, trimming trees</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">forestry, weeding</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">furriery</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">horse grooming</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">horse racing, galloping</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">horse racing, trotting</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr>
+<td><font face="arial" size="2">horse racing, walking</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">173</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">locksmith</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">machine tooling, machining, working sheet metal</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">forestry, general</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">forestry, felling trees</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">forestry, carrying logs</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">733</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, feeding cattle, horses</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">farming, hauling water for animals, general hauling water</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, taking care of animals (grooming, brushing, shearing sheep, assisting with birthing, medical care, branding)</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">farming, forking straw bales, cleaning corral or barn, vigorous effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, milking by hand, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">farming, milking by machine, light effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">farming, shoveling grain, moderate effort</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">fire fighter, general</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">forestry, barking trees</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">forestry, ax chopping, slow</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">forestry, ax chopping, fast</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">1134</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">fire fighter, hauling hoses on ground</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">fire fighter, climbing ladder with full gear</font></td><td><font face="arial" size="2">occupation</font></td><td><center><font color="#ffff00" face="arial" size="2">733</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">preparing food at church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">praise with dance or run, spiritual dancing in church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">serving food at church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">washing dishes/cleaning kitchen at church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">eating at church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">eating/talking at church or standing eating, American Indian Feast days</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">cleaning church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">general yard work at church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - moderate (lifting 50 lbs., assembling at fast rate)</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing - moderate/heavy work</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">typing, electric, manual, or computer</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">walk/stand combination for religious purposes, usher</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 3.5 mph, brisk speed, not carrying anything</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">253</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting in church, in service, attending a ceremony, sitting quietly</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting, playing an instrument at church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">sitting in church, talking or singing, attending a ceremony, sitting, active participation</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting, reading religious materials at home</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">87</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing in church (quietly), attending a ceremony, standing quietly</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">80</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing, singing in church, attending a ceremony, standing, active participation</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">kneeling in church/at home (praying)</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">standing, talking in church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">120</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking in church</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, less than 2.0 mph - very slow</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, 3.0 mph, moderate speed, not carrying anything</font></td><td><font face="arial" size="2">religious activities</font></td><td><center><font color="#ffff00" face="arial" size="2">220</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">running, 8.6 mph (7 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">934</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">running, 9 mph (6.5 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">1000</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">running, 10 mph (6 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">1067</font></center></td></tr><tr>
+<td><font face="arial" size="2">running, 10.9 mph (5.5 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">1200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">running, cross country</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr>
+<td><font face="arial" size="2">running (Taylor Code 200)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">running, stairs, up</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">1000</font></center></td></tr><tr>
+<td><font face="arial" size="2">running, on a track, team practice</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">running, training, pushing a wheelchair</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">running, 8 mph (7.5 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">900</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">running, 7.5 mph (8 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">833</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">jog/walk combination (jogging component of less than 10 minutes) (Taylor Code 180)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">jogging, general</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">jogging, in place</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">jogging on a mini-tramp</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">running, 5 mph (12 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">running, 5.2 mph (11.5 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr>
+<td><font face="arial" size="2">running, 6 mph (10 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">running, 6.7 mph (9 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">733</font></center></td></tr><tr>
+<td><font face="arial" size="2">running, 7 mph (8.5 min/mile)</font></td><td><font face="arial" size="2">running</font></td><td><center><font color="#ffff00" face="arial" size="2">767</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">showering, toweling off (standing)</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">having hair or nails done by someone else, sitting</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">hairstyling</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">grooming (washing, shaving, brushing teeth, urinating, washing hands, putting on make-up), sitting or standing</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">taking medication, sitting or standing</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr>
+<td><font face="arial" size="2">talking and eating or eating only (standing)</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">eating (sitting)</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">dressing, undressing (standing or sitting)</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">bathing (sitting)</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting on toilet</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - getting ready for bed, in general</font></td><td><font face="arial" size="2">self care</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">passive, light effort, kissing, hugging</font></td><td><font face="arial" size="2">sexual activity</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">general, moderate effort</font></td><td><font face="arial" size="2">sexual activity</font></td><td><center><font color="#ffff00" face="arial" size="2">87</font></center></td></tr><tr>
+<td><font face="arial" size="2">active, vigorous effort</font></td><td><font face="arial" size="2">sexual activity</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">boxing, punching bag</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">boxing, sparring</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">broomball</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">children's games (hopscotch, 4-square, dodge ball, playground apparatus, t-ball, tetherball, marbles, jacks, acrace games)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">coaching: football, soccer, basketball, baseball, swimming, etc.</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">cricket (batting, bowling)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">croquet</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">curling</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">darts, wall or lawn</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">boxing, in ring, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">bowling (Taylor Code 390)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">archery (non-hunting)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">badminton, competitive (Taylor Code 450)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">badminton, social singles and doubles, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">basketball, game (Taylor Code 490)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">basketball, non-game, general (Taylor Code 480)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">basketball, officiating (Taylor Code 500)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">basketball, shooting baskets</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">wheelchair</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr>
+<td><font face="arial" size="2">billiards</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">drag racing, pushing or driving a car</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">tennis, doubles</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">tennis, doubles (Taylor Code 430)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">tennis, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">tai chi</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">table tennis, ping pong (Taylor Code 410)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">squash (Taylor Code 530)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">softball, pitching</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">softball, officiating</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">softball or baseball, fast or slow pitch, general (Taylor Code 440)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">tennis, singles (Taylor Code 420)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">trampoline</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">volleyball (Taylor Code 400)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">handball, team</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">track and field (steeplechase, hurdles)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+<td><font face="arial" size="2">track and field (high jump, long jump, triple jump, javelin, pole vault)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">track and field (shot, discus, hammer throw)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">wallyball, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">wrestling (one match = 5 minutes)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">volleyball, beach</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">volleyball, non-competitive, 6 - 9 member team, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">volleyball, competitive, in gymnasium</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">soccer, casual, general (Taylor Code 540)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">soccer, competitive</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">fencing</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">hand gliding</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">hockey, field</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">hockey, ice</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">horseback riding, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">horseback riding, saddling horse,  grooming horse</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">horseback riding, trotting</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr>
+<td><font face="arial" size="2">horseback riding, walking</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">horseshoe pitching, quoits</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">jai alai</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">judo, jujitsu, karate, kick boxing, tae kwan do</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+<td><font face="arial" size="2">handball, general (Taylor Code 520)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">hacky sack</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">football, competitive</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">football, touch, flag, general (Taylor Code 510)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">football or baseball, playing catch</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">frisbee playing, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">frisbee, ultimate</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">golf, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">golf, miniature, driving range</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">golf, walking and pulling clubs (See footnote at end of the Compendium)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">287</font></center></td></tr><tr>
+<td><font face="arial" size="2">golf, using power cart (Taylor Code 070)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">gymnastics, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">golf, walking and carrying clubs (See footnote at end of the Compendium)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sky diving</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">kickball</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">lacrosse</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">motor-cross</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">orienteering</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr>
+<td><font face="arial" size="2">paddleball, casual, general (Taylor Code 460)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">polo</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">racquetball, competitive</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">racquetball, casual, general (Taylor Code 470)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">rock climbing, ascending rock</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">733</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">rock climbing, rappelling</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">rope jumping, fast</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">rope jumping, moderate, general</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+<td><font face="arial" size="2">rope jumping, slow</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">rugby</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+<td><font face="arial" size="2">skateboarding</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">skating, roller (Taylor Code 360)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">roller blading (in-line skating)</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">juggling</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">shuffleboard, lawn bowling</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">paddleball, competitive</font></td><td><font face="arial" size="2">sports</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+<td><font face="arial" size="2">riding in a bus</font></td><td><font face="arial" size="2">transportation</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">pushing plane in and out of hangar</font></td><td><font face="arial" size="2">transportation</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">riding in a car or truck</font></td><td><font face="arial" size="2">transportation</font></td><td><center><font color="#ffff00" face="arial" size="2">67</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">automobile or light truck (not a semi) driving</font></td><td><font face="arial" size="2">transportation</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">motor scooter, motorcycle</font></td><td><font face="arial" size="2">transportation</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">flying airplane</font></td><td><font face="arial" size="2">transportation</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">driving heavy truck, tractor, bus</font></td><td><font face="arial" size="2">transportation</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 2.5 mph slowly and carrying objects less than 25 pounds</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">standing - moderate/heavy work</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 3.5 mph, briskly and carrying objects less than 25 pounds</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">300</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, 3.0 mph moderately and carrying objects less than 25 pounds, pushing something</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting - moderate work</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, 3.5 mph, brisk speed, not carrying anything</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">253</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">walking, 3.0 mph, moderate speed, not carrying anything</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">220</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, less than 2.0 mph, very slow</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sitting - light office work, in general</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting - meeting, general, and/or with talking involved</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing, child care, only active periods</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">walk/run play with children, moderate, only active periods</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walk/run play with children, vigorous, only active periods</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing - light work (filing, talking, assembling)</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">153</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">standing - light/moderate work (pack boxes, assemble/repair, set up chairs/furniture)</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">standing - moderate (lifting 50 lbs., assembling at fast rate)</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">typing, electric, manual, or computer</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">100</font></center></td></tr><tr>
+<td><font face="arial" size="2">sitting, child care, only active periods</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walk/stand combination, for volunteer purposes</font></td><td><font face="arial" size="2">volunteer activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking to and from an outhouse</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking to neighbor's house or family's house for social reasons</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">walking from house to car or bus, from car or bus to go places, from car or bus to and from the worksite</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking for pleasure (Taylor Code 010)</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, 3.5 mph, uphill</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 2.0 mph, level, slow pace, firm surface</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, less than 2.0 mph, level ground, strolling, very slow</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">walking, household walking</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">133</font></center></td></tr><tr>
+<td><font face="arial" size="2">using crutches</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking the dog</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, 2.5 mph, firm surface</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 2.5 mph, downhill</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">187</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">walking, to work or class (Taylor Code 015)</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, grass track</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, for pleasure, work break</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 5.0 mph</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, 4.5 mph, level, firm surface, very, very brisk</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">420</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">walking, 4.0 mph, level, firm surface, very brisk pace</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">walking, 3.5 mph, level, brisk, firm surface, walking for exercise</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">253</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">walking, 3.0 mph, level, moderate pace, firm surface</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">220</font></center></td></tr><tr>
+<td><font face="arial" size="2">up stairs, using or climbing up ladder (Taylor Code 030)</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">rock or mountain climbing (Taylor Code 060)</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">climbing hills with 0 to 9 pound load</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">loading /unloading a car</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">carrying 74+ lb load, upstairs</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">carrying 50 to 74 lb load, upstairs</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+<td><font face="arial" size="2">carrying 25 to 49 lb load, upstairs</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">carrying 16 to 24 lb load, upstairs</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">carrying 1 to 15 lb load, upstairs</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">carrying load upstairs, general</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr>
+<td><font face="arial" size="2">carrying infant or 15 pound load (e.g. suitcase), level ground or downstairs</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">climbing hills with 10 to 20 pound load</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">500</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">backpacking (Taylor Code 050)</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">race walking</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr>
+<td><font face="arial" size="2">pushing a wheelchair, non-occupational setting</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">pushing or pulling stroller with child  or walking  with children</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">marching, rapidly, military</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">433</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">bird watching</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr>
+<td><font face="arial" size="2">hiking, cross country (Taylor Code 040)</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">downstairs</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">climbing hills with 42+ pound load</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">climbing hills with 21 to 42 pound load</font></td><td><font face="arial" size="2">walking</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">water jogging</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sailing, boat and board sailing, windsurfing, ice sailing, general (Taylor Code 235)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">boating, power</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">167</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">skindiving, fast</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">1067</font></center></td></tr><tr>
+<td><font face="arial" size="2">skindiving, moderate</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">833</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">skindiving, scuba diving, general (Taylor Code 310)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">snorkeling (Taylor Code 320)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">surfing, body or board</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr>
+<td><font face="arial" size="2">swimming laps, freestyle, fast, vigorous effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">swimming laps, freestyle, slow, moderate or light effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">swimming, backstroke, general</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">swimming, breaststroke, general</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+<td><font face="arial" size="2">swimming, butterfly, general</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">733</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">swimming, crawl, fast (75 yards/minute), vigorous effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">733</font></center></td></tr><tr>
+<td><font face="arial" size="2">skimobiling</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">skiing, water (Taylor Code 220)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">sailing, Sunfish/Laser/Hobby Cat, Keel boats, ocean sailing, yachting</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">canoeing, on camping trip (Taylor Code 270)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">canoeing, harvesting wild rice, knocking rice off the stalks</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">220</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">canoeing, portaging</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">canoeing, rowing, 2.0-3.9 mph, light effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">canoeing, rowing, 4.0-5.9 mph, moderate effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">canoeing, rowing, for pleasure, general (Taylor Code 250)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">canoeing, rowing, in competition, or crew or sculling (Taylor Code 260)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr>
+<td><font face="arial" size="2">diving, springboard or platform</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">kayaking</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">paddle boat</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sailing, in competition</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">swimming, crawl, slow (50 yards/minute), moderate or light effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">swimming, lake, ocean, river (Taylor Codes 280, 295)</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">whitewater rafting, kayaking, or canoeing</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">canoeing, rowing, &gt;6 mph, vigorous effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">800</font></center></td></tr><tr>
+<td><font face="arial" size="2">water volleyball</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">200</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">water polo</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">water aerobics, water calisthenics</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">swimming, treading water, moderate effort, general</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">267</font></center></td></tr><tr>
+<td><font face="arial" size="2">swimming, treading water, fast vigorous effort</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">667</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">swimming, synchronized</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr>
+<td><font face="arial" size="2">swimming, sidestroke, general</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">swimming, leisurely, not lap swimming, general</font></td><td><font face="arial" size="2">water activities</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr>
+<td><font face="arial" size="2">skiing, cross country, hard snow, uphill, maximum, snow mountaineering</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">1100</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">skiing, downhill, light effort</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">333</font></center></td></tr><tr>
+<td><font face="arial" size="2">skating, ice, rapidly, more than 9 mph</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">skiing, cross country, 5.0-7.9 mph, brisk speed, vigorous effort</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">600</font></center></td></tr><tr>
+
+<td><font face="arial" size="2">skiing, cross country, 4.0-4.9 mph, moderate speed and effort, general</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">skiing, cross country, 2.5 mph, slow or light effort, ski walking</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">skating, speed, competitive</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">1000</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">ski jumping (climb up carrying skis)</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">skiing, downhill, moderate effort, general</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">skiing, cross country, &gt;8.0 mph, racing</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">934</font></center></td></tr><tr>
+<td><font face="arial" size="2">moving ice house (set up/drill holes, etc.)</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">400</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">skating, ice, 9 mph or less</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">367</font></center></td></tr><tr>
+<td><font face="arial" size="2">skating, ice, general (Taylor Code 360)</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr bgcolor="#333333">
+
+<td><font face="arial" size="2">snowmobiling</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">233</font></center></td></tr><tr>
+<td><font face="arial" size="2">snow shoeing</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">sledding, tobogganing, bobsledding, luge (Taylor Code 370)</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr><tr>
+<td><font face="arial" size="2">skiing, downhill, vigorous effort, racing</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">533</font></center></td></tr><tr bgcolor="#333333">
+<td><font face="arial" size="2">skiing, general</font></td><td><font face="arial" size="2">winter activities</font></td><td><center><font color="#ffff00" face="arial" size="2">467</font></center></td></tr></tbody></table></p><p></p><hr><p><font face="arial" size="2"><b><font size="3"><a href="calories.htm">GO BACK TO THE SEARCH PAGE</a></font></b>
+
+</font></p><p><font face="arial" size="2"><a href="calories.htm">Back to the main calorie calculator page...</a>
+</font></p><p>
+
+
+</p><hr>
+<center><font face="arial" size="2"><font color="#ffff00" face="arial" size="5">Love This Database? Check THIS Out!</font><br>
+We learned how to do all this fun database stuff and starting going ccrraazzyy! Check out our awesome <a href="../store/proteinfinder.htm">protein powder</a> and <a href="../store/protbarfinder.htm">protein bar</a> databases. Search by carbs, protein, fat, price and more!</font></center>
+
+<font face="arial" size="2"></font>                <!-- /content -->
+
+
+                </td>
+                <td width="15"></td>
+            </tr>
+        </tbody></table>
+</body></html>

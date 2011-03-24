@@ -4,14 +4,20 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Foodie</title>
+<!-- 
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/themes/base/jquery-ui.css" type="text/css" media="all" />
+-->
+<link rel="stylesheet" href="js/jquery-ui.css" type="text/css" media="all" />
 <link rel="stylesheet" href="styles/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <link rel="stylesheet" href="styles/custom.css" />
 
+<!-- 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-
+-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script language="JavaScript">
 <!--hide from Javascript-challanged browsers
 
@@ -38,9 +44,8 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
 </head>
 <body>
 <div id="page">
-
 <div id="headerimg">
-<h1 id="title">Foodie</h1>
+<a href="index.php" id="foodie"></a>
 	<form method = "post" id="login" action="UserManagement/signin.php" method="post">
 	<label>User:</label><input id="username" name="username" type="text"/>
 	<span class="error_text"><span></span></span>
@@ -49,22 +54,13 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
 	<a href=register.php>Register</a><br/>
 	</form>
 	
-<a href="index.php" id="foodie"></a>
-
 <ul id="navbar">
-	<li><a href="index.php">Home |</a></li>
-	<li><a href="user.php">User |</a></li>
-
-	<li><a href="comments.php">Comments |</a>
-	</li>
-	<li><a href="weightlog.php">Weight Log |</a></li>
-	<li><a href="fatsecret2.php">Fat Secret |</a><ul>
-		<li><a href="fatsecret.php">Fat Secret 2</a></li>
-		<li><a href="nutritionpanel.html">Numero Tres</a></li></ul>
-
-	</li>
-	<li><a href="restaurantSubmission.php">Restaurant |</a>
-	</li>
+	<li><a href="index.php">Dashboard </a></li>
+	<li><a href="nutritionlog.php">Nutrition Log </a></li>
+	<li><a href="weightlog.php">Weight Log </a></li>
+	<li><a href="calendar.php">Calendar </a></li>
+	<li><a href="rfid.php">RFID </a></li>
+	<li><a href="restaurantSubmission.php">Restaurant </a></li>
 	<li><a href="./forums">Forums</a></li>
 	<!-- .. <li><a href="jobs.php">Work</a></li>  .. -->
 	<!-- ... and so on ... -->

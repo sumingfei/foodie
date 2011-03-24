@@ -16,6 +16,6 @@ $db_settings["default"] = array(
     "username" => "root",
     "password" => "",
     "host"     => "localhost",
-    "database" => "temp"
+    "database" => "foodie"
 );
 ?>

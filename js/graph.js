@@ -28,11 +28,11 @@ Highcharts.visualize = function(table, options) {
 	
 // On document ready, call visualize on the datatable.
 $(document).ready(function() {			
-	var table = document.getElementById('datatable'),
+	var table = document.getElementById('datatable2'),
 	options = {
 		   chart: {
 			  renderTo: 'container',
-			  defaultSeriesType: 'column'
+			  defaultSeriesType: 'spline'
 		   },
 		   title: {
 			  text: ''
@@ -49,7 +49,28 @@ $(document).ready(function() {
 				 return '<b>'+ this.series.name +'</b><br/>'+
 					this.y +' '+ this.x.toLowerCase();
 			  }
-		   }
+		   },
+		   plotOptions: {
+						spline: {
+							cursor: 'pointer',
+							point: {
+								events: {
+									click: function() {
+										hs.htmlExpand(null, {
+											pageOrigin: {
+												x: this.pageX, 
+												y: this.pageY
+											},
+											headingText: this.series.name,
+											maincontentText: 'this.category: '+ this.category +
+												'<br/>this.y: '+ this.y,
+											width: 200
+										});
+									}
+								}
+							}
+						}
+					}
 		};
 				
 	Highcharts.visualize(table, options);

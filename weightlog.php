@@ -1,7 +1,13 @@
 <?php
 include('header.php');
+date_default_timezone_set('America/Los_Angeles');
 ?>
-<div id="content">
+<script type="text/javascript" src="js/highcharts.js"></script>
+		
+		<!-- Additional files for the Highslide popup effect -->
+<script type="text/javascript" src="js/highslide-full.min.js"></script>
+<script type="text/javascript" src="js/highslide.config.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="js/highslide.css">
 	<script>
 	function changeWeight(date, weight){
 		$.ajax({
@@ -10,18 +16,18 @@ include('header.php');
 				data	: {"date": date, "weight": weight},
 				success : function(response)
 				{
+					//console.debug(response);
 				}
 		});
 	}
 	function weightSubmit(){
 		$date = $("#datepicker").val();
 		$weight = $("#weightpicker").val();
-		console.debug($date);
-		
-		//$("#dd"+$date).val($weight);
-		console.debug($(this).val());
 		changeWeight($date, $weight);
-		
+		setTimeout(function () { // wait 2 seconds and reload
+			window.location.reload(true);
+		  }, 2000);
+
 	}
 	$(function() {
 		$( "#datepicker" ).datepicker({
@@ -102,22 +108,64 @@ include('header.php');
 		});
 		//init scrollbar size
 		
-		/*
-		$.ajax({
-				type	: "GET",
-				url		: "saveWeight.php",
-				dataType: "json",
-				data	: {"what": 1},
-				success : function(response)
-				{
-					
-				}
-		});
-		*/
 		setTimeout( sizeScrollbar, 10 );//safari wants a timeout
 	});
+	
+	var chart;
+	$(document).ready(function() {
+		var chart_options = {
+			chart: {
+				renderTo: 'container',
+				defaultSeriesType: 'spline'
+			},
+			title: {
+				text: 'Weight History',
+				x: -20 //center
+			},
+			xAxis: {
+				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+			},
+			yAxis: {
+				title: {
+					text: 'Weight (lbs)'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				formatter: function() {
+						return '<b>'+ this.series.name +'</b><br/>'+
+						this.x +': '+ this.y +'lbs';
+				}
+			},
+			series: []
+		}
+		$user_id = 1234;
+		$.ajax({
+				type	: "GET",
+				url		: "getWeightHistory.php",
+				dataType: "json",
+				data	: {"user_id": $user_id },
+				success : function(response)
+				{
+					chart_options.xAxis.categories = response.date;
+					chart_options.series.push({
+						name: 'Weight',
+						data: response.weight
+					});
+					chart = new Highcharts.Chart(chart_options);
+				}
+		});
+		
+	});
+
 	</script>
 
+<div id="content">	
 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all" id="weightlog">
 	<div class="scroll-content">
 		<?php
@@ -140,11 +188,11 @@ include('header.php');
 
 		for($i = 14; $i >= 0; $i--){
 			$newdate = strtotime(-$i."day", time());
-			$date2 = date("m/d/Y", $newdate);
+			$date2 = date("Y-m-d", $newdate);
 			if(isset($data[$date2])){
-				print '<div class="scroll-content-item ui-widget-header"><p style="float: left">'. date("M d", $newdate ).'</p> <input class="weightbox" id="dd'.$date2.'dd" style=" margin-left: 25%; height: 50px; width:50px; font-size: 20px;" value="'.$data[$date2].'" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
+				print '<div class="scroll-content-item"><p style="float: left">'. date("M d", $newdate ).'</p> <input autocomplete="off" class="weightbox" id="dd'.$date2.'dd" style=" font-size: 18px;" value="'.$data[$date2].'" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
 			}else{
-				print '<div class="scroll-content-item ui-widget-header"><p style="float: left">'. date("M d", $newdate ).'</p> <input class="weightbox" id="dd'.$date2.'dd" style=" margin-left: 25%; height: 50px; width:50px; font-size: 20px;" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
+				print '<div class="scroll-content-item"><p style="float: left">'. date("M d", $newdate ).'</p> <input autocomplete="off" class="weightbox" id="dd'.$date2.'dd" style=" font-size: 18px;" onChange="changeWeight(\''.$date2.'\', this.value);"/></div>';
 			}
 		}
 		?>
@@ -163,8 +211,10 @@ include('header.php');
 		</form>	
 </div>
 
-<div id="here"></div>
-
+<div id="weight_graph" style="padding: 20px 0 0; clear: both;"> 
+<h3 style="clear: left" class="content_section">Weight Log</h3>
+<div id="container" style="width: 800px; height: 400px; margin: 0 0;"></div>
+<div>
 
 </div>
 <?php

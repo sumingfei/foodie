@@ -2,7 +2,7 @@
 include('connect-db.php');
 
 if(isset($_GET['date']) && is_numeric($_GET['weight'])){ //save weight data
-	$date = $_GET['date'];
+	$date = date("Y-m-d", strtotime($_GET['date']));
 	$weight = $_GET['weight'];
 	if($stmt = $mysqli->prepare("INSERT INTO weight_history (date, weight) VALUES(?, ?) ON DUPLICATE KEY UPDATE weight=?;")){
 		$stmt->bind_param("sii", $date, $weight, $weight);

@@ -1,10 +1,11 @@
 /* colors 
 #666666 (dark grey) - main text color
-#85d890 (green) - background and links
-#54b4c8 (sky blue) - headings color
+#589c24 (green) - background and links
+#8dd231 (light-green) - calendar
 #eaed48 (yellow) - hover link and button background
 #dd0000 (dark red) - italics
 #000000 (black) - bold
+#ee8804 (orange) - headings
 -----------------------*/
 
 /* containers
@@ -14,34 +15,71 @@ body {
 	padding: 0;
 	text-align: center;
 	font: 12px Arial;
-	color: #666666;
-	background: #85d890 url('../images/bg.jpg') repeat-x top left;
+	/*background: url('../images/backgroundstrip.png') repeat-x top left;*/
+	background: #8dd231;
 }
 #page {
 	margin: 0 auto;
+	padding: 0;
 	width: 975px;
 	text-align: justify;
-	background: url('../images/bg2.jpg') repeat-y top left;
+	background: #fff;
+	-moz-box-shadow: 0 0 10px #4f7135;
+	-webkit-box-shadow: 0 0 10px #4f7135;
+	box-shadow: 0 0 10px #4f7135;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
 }
 #headerimg {
-	background: url('../images/header2.jpg') no-repeat top left;
-	height: 186px;
+	background: url('/images/header.png') no-repeat top left;
+	height: 90px;
+	margin: auto;
+	padding: 10px 30px 0 0;
 }
-
-#navi {
-	margin: 18px 30px;
-	font-size: 20px;
-	color: #ffffff;
-	}
+#foodie {
+	display: inline-block;
+	width: 170px;
+	height: 82px;
+	margin-top: -5px;
+	background: transparent;
+	float: left;
+}
+#login {
+	float: right;
+}
+#login label {
+	color: #000;
+}
+#username , #password {
+	width: 110px;
+}
 #content {
-	padding: 5px 30px 20px 20px;
+	margin: 10px 0 0 0;
+	min-height: 600px;
+	padding: 0 10px 0 10px;
 } 
+#sidebar{
+	width: 180px;
+	float: left; 
+	padding: 20px 0 0 25px;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#cccccc'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#cccccc)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #efefef,  #cccccc); /* for firefox 3.6+ */ 
+	-moz-box-shadow: 0 0 10px #666666;
+	-webkit-box-shadow: 0 0 10px #666666;
+	box-shadow: 0 0 10px #666666;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+#main_content {
+	float: right;
+	width: 730px;
+}
 #footer {
 	margin: 0 0 15px 0;
 	padding: 10px 10px 20px 10px;
 	clear: both;
 	text-align: center;
-	background: url('../images/footer.jpg') no-repeat top left;
 }
 /* text changes
 --------------------*/
@@ -55,29 +93,18 @@ em, i {
 --------------------*/
 h1 { /* main headings */
 }
-#foodie {
-	display: block;
-	width: 180px;
-	height: 80px;
-	margin-top: 20px;
-	margin-left: 150px;
-	background: transparent;
-}
-#title { /* main h1 (Foodie, don't display when using image)*/
-	display: none;
-}
 h2 { /* sidebar headings */
 	font-size: 14px;
 	letter-spacing: 1px;
-	color: #54b4c8;
+	color: #ee8804;
 	padding: 20px 0 0 20px;
 	margin: 0 0 5px 0;
 }
 h3 { /* Content headings */
 	font-size: 20px;
 	letter-spacing: 5px;
-	color: #54b4c8;
-	margin: 20px 0 0 0;
+	color: #ee8804;
+	margin: 0 0 20px 0;
 }
 .first {
 	margin: 0;
@@ -138,7 +165,8 @@ li#one a, li#two a, li#three a, li#four a{
 /* links
 -------------------*/
 a {
-	color: #7bd788;
+	/*color: #7bd788;*/
+	color: #068a2e;
 	text-decoration: none;
 	font-weight: bold;
 }
@@ -164,36 +192,44 @@ a:hover {
 }
 #nutrition {
 	color: #de5d33;
-	background: url('../Images/nutrition.jpg') no-repeat top left;
+	background: url('/images/nutrition.png') no-repeat top left;
 }
 #workout {
 	color: #b657c1;
-	background: url('../Images/workout.jpg') no-repeat top left;
+	background: url('/images/workout.png') no-repeat top left;
 }
 #body {
 	color: #85c7ff;
-	background: url('../Images/body.jpg') no-repeat top left;
+	background: url('/images/body.png') no-repeat top left;
 }
 /* navi dropdown menu
 ------------------*/
 #navbar {
-	margin: 20px 20px;
-	padding: 0;
-	font-size: 18px; 
-	z-index: 3;}
+	float: right;
+	font: 14px Sans-serif; 
+	z-index: 3;
+}
+#navbar a {
+	font: 16px;
+	color: #000000;
+	padding: 5px;
+	margin: 0 0 0 5px;
+	display: inline-block;
+}
+#navbar a:hover{
+	color: #ffffff;
+	background-color: #000000;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
 #navbar li {
 	list-style: none;
 	float: left; }
-#navbar li a {
-	display: block;
-	padding: 3px 8px;
-	background-color: transparent;
-	color: #fff;
-	text-decoration: none; }
 #navbar li ul {
 	display: none; 
 	width: 10em; /* Width to help Opera out */
-	background-color: #69f;}
+}
+	
 #navbar li:hover ul {
 	display: block;
 	position: absolute;
@@ -211,40 +247,36 @@ a:hover {
 /* forms
 ------------------*/
 input, textarea {
-	border: 1px solid #7bd788;
+	border: 1px solid #589c24;
 	background: transparent;
 	margin: 5px;
 }
 input:focus {
 	background: #ffffff;
 }
-#login {
-	padding: 3px 0 0 335px;
-}
-#login label {
-	color: #ffffff;
-	}
-#username , #password {
-	width: 110px;
-	
+.img{
+	border: none;
 }
 #submissions {
 	padding: 10px;
 }
 #submissions a {
 	padding: 5px;
-	background: #7bd788;
+	background: #589c24;
 	color: #ffffff;
 	font-weight: bold;
 }
 #submit {
-	background: #7bd788;
+	background: #589c24;
 	color: #ffffff;
 	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 #submit:focus , #submit:hover, #submissions a:hover{
 	background: #eaed48;
-	color: #7bd788;
+	color: #589c24;
 }
 .d1 {
 	background: #7bd788;
@@ -258,3 +290,4 @@ input:focus {
 	margin: 10px 0;
 	color: #000000;
 }
+

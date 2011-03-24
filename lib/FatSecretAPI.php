@@ -145,7 +145,22 @@ class FatSecretAPI{
 		
 		return $returnJson;
 	}
-	
+	function searchFoods2($search_phrase, $page){
+		$url = FatSecretAPI::$base . 'method=foods.search&format=json&page_number='.$page.'&max_results=' .FatSecretAPI::$maxresults. '&search_expression=' . $search_phrase;
+		
+		$oauth = new OAuthBase();
+		
+		$normalizedUrl;
+		$normalizedRequestParameters;
+		
+		$signature = $oauth->GenerateSignature($url, $this->_consumerKey, $this->_consumerSecret, null, null, $normalizedUrl, $normalizedRequestParameters);
+		$returnJson = $this->GetQueryResponse($normalizedUrl, $normalizedRequestParameters . '&' . OAuthBase::$OAUTH_SIGNATURE . '=' . urlencode($signature));
+		//$doc = new SimpleXMLElement($returnXML);
+
+		//$this->ErrorCheck($doc);
+		
+		return $returnJson;
+	}
 	function searchFoods($search_phrase){
 		$url = FatSecretAPI::$base . 'method=foods.search&max_results=' .FatSecretAPI::$maxresults. '&search_expression=' . $search_phrase;
 		
@@ -162,6 +177,7 @@ class FatSecretAPI{
 		
 		return $returnXML;
 	}
+	
 	
 	/* Private Methods */
 	private function GetQueryResponse($requestUrl, $postString) {
